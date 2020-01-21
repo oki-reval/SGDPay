@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { SafeAreaView } from 'react-native'
 import AppContainer from '_navigations';
 import { Provider } from 'react-redux';
 import store from '_states/store';
