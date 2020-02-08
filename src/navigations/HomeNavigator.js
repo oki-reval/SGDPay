@@ -7,7 +7,12 @@ const HomeNavigatorConfig = {
 };
 
 const RouteConfigs = {
-	Home
+	Home: {
+		screen: Home,
+		navigationOptions: {
+			header: null
+		}
+	},
 };
 
 const HomeNavigator = createStackNavigator(RouteConfigs, HomeNavigatorConfig);

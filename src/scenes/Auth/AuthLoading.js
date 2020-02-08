@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { color } from '_styles';
-import { BarIndicator } from 'react-native-indicators';
+import { BallIndicator } from 'react-native-indicators';
 
 
 const AuthLoading = (props) => {
@@ -21,7 +21,7 @@ const AuthLoading = (props) => {
 
     return(
         <View style={styles.wrap}>
-            <BarIndicator  color={'#fff'} count={5} size={30} style={{flex: 0}}/>
+            <BallIndicator color={'#fff'} size={30} />
             {/* <Image source={require('../assets/cm.png')} style={styles.logo} resizeMode='contain' /> */}
         </View>
     )

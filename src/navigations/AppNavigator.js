@@ -4,6 +4,10 @@ import HomeStack from '_navigations/HomeNavigator';
 import ProfileStack from '_navigations/ProfileNavigator';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from '_styles';
+import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import conf from '../assets/fonts/selection.json'
+
+const Icon = createIconSetFromIcoMoon(conf);
 
 const TabNavigatorConfig =
 {
@@ -14,9 +18,9 @@ const TabNavigatorConfig =
             if (routeName == 'Home') {
                 iconName = `home`;
             } else if (routeName == 'Profile') {
-                iconName = `user`;
+                iconName = `profile`;
             }
-            return <FontAwesome name={iconName} size={25} color={tintColor} />
+            return <Icon name={iconName} size={20} color={tintColor} />
         },
     }),
     tabBarOptions: {
