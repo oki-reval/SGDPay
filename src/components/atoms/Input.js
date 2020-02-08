@@ -6,7 +6,7 @@ import { color } from '_styles';
 
 const Input = (props) => {
     return (
-        <View style={styles.wraper}>
+        <View style={[styles.wraper, props.containerStyle]}>
             <TextInput onChangeText={props.onChangeText} placeholder={props.placeholder} style={styles.input} secureTextEntry={props.password} {...props} />
             {
                 props.icon? <Icon name={props.icon} color={color.g400} size={20} style={styles.icon} /> : null
