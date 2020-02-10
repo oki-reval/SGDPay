@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, StyleSheet, StatusBar, ScrollView, View } from 'react-native';
+import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderTransparent, Input, Divider } from '_atoms';
 import { Slider, CardInfo, Menu, CampusNews, StudentNews } from '_molecules';
@@ -10,19 +10,43 @@ class Home extends React.Component {
     constructor(props) {
         super(props),
             this.state = {
-                activeImage: 0
+                activeImage: 0,
+                scrollAnimatedValue: new Animated.Value(0)
             }
     }
+
+    changeStatusBar=(a)=>{
+        StatusBar.setBarStyle(a<50? 'light-content' : 'dark-content', true)
+    }
     render() {
+
+        const animated = this.state.scrollAnimatedValue.interpolate({
+            inputRange: [0, 30, 100],
+            outputRange: ['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,1)'],
+            extrapolateRight: 'clamp',
+        })
+        const elevation = this.state.scrollAnimatedValue.interpolate({
+            inputRange: [0, 30, 100],
+            outputRange: [0.01, 0.01, 3],
+            extrapolateRight: 'clamp',
+        })
+
         return (
             <>
-                <StatusBar translucent backgroundColor='transparent' />
+                <StatusBar animated translucent backgroundColor='transparent' />
 
-                <HeaderTransparent>
+                <HeaderTransparent animated={animated} elevation={elevation}>
                     <Input placeholder='Cari...' icon='search' containerStyle={{ flex: 1 }} />
                 </HeaderTransparent>
 
-                <ScrollView style={styles.scrollView}>
+                <Animated.ScrollView
+                    style={styles.scrollView}
+                    scrollEventThrottle={8}
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { y: this.state.scrollAnimatedValue } } }],
+                        { listener: event => this.changeStatusBar(event.nativeEvent.contentOffset.y) }
+                    )}
+                >
                     <Image source={{ uri: data[this.state.activeImage] }} style={styles.backgroundImage} blurRadius={5} />
                     <Slider data={data} setActiveImage={(img) => this.setState({ activeImage: img })} />
                     <CardInfo />
@@ -30,7 +54,7 @@ class Home extends React.Component {
                     <Divider />
                     <CampusNews data={news} />
                     <StudentNews data={news} />
-                </ScrollView>
+                </Animated.ScrollView>
             </>
         )
     }
