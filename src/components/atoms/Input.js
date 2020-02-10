@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
     wraper: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: color.g300,
+        borderColor: color.g200,
         borderWidth: 1,
         borderRadius: 10,
         marginVertical: 5,
-        backgroundColor: '#fff'
+        backgroundColor: color.g100
     },
     input: {
         flex: 1,
