@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 import { color } from '_styles';
 import { Header } from 'react-navigation-stack';
 import { withNavigation } from 'react-navigation';
@@ -14,6 +14,7 @@ const Headers = (props) => {
         }
         props.navigation.goBack()
     }
+
     return (
         <View style={styles.wraper}>
             {
@@ -39,12 +40,11 @@ const Headers = (props) => {
     )
 }
 
-export const HeaderTransparent = (props) => {
-    
+export const HeaderTransparent = (props) => {    
     return (
-        <View style={[styles.wraperTransparent, {backgroundColor: 'rgba(255,255,255,1'}]}>
+        <Animated.View style={[styles.wraperTransparent, {backgroundColor: props.animated, elevation: props.elevation}]}>
             {props.children}
-        </View>
+        </Animated.View>
     )
 }
 
@@ -59,13 +59,12 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     wraperTransparent: {
-        height: Header.HEIGHT+20,
+        height: Header.HEIGHT+15,
         flexDirection: 'row',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        elevation: 3,
         paddingTop: 20,
         paddingHorizontal: 10,
         paddingBottom: 5,
