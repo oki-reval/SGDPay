@@ -9,16 +9,16 @@ export const CampusNews = (props) => {
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity style={[styles.card]}>
                     <Image source={{ uri: props.data[0] }} style={styles.img} />
-                    <Text style={styles.title}>Berita Kampus 1</Text>
+                    <Text style={styles.title}>Berita Kampus</Text>
                 </TouchableOpacity>
                 <View>
                     <TouchableOpacity style={[styles.cards]}>
                         <Image source={{ uri: props.data[1] }} style={styles.imgs} />
-                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus 2</Text>
+                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.cards]}>
                         <Image source={{ uri: props.data[2] }} style={styles.imgs} />
-                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus 3</Text>
+                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -34,16 +34,16 @@ export const StudentNews = (props) => {
                 <View>
                     <TouchableOpacity style={[styles.cards]}>
                         <Image source={{ uri: props.data[1] }} style={styles.imgs} />
-                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus 2</Text>
+                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Mahasiswa</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.cards]}>
                         <Image source={{ uri: props.data[2] }} style={styles.imgs} />
-                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Kampus 3</Text>
+                        <Text style={[styles.title, { fontSize: 10 }]}>Berita Mahasiswa</Text>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={[styles.card]}>
                     <Image source={{ uri: props.data[0] }} style={styles.img} />
-                    <Text style={styles.title}>Berita Kampus 1</Text>
+                    <Text style={styles.title}>Berita Mahasiswa</Text>
                 </TouchableOpacity>
             </View>
         </View>

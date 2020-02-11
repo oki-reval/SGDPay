@@ -5,19 +5,27 @@ import { HeaderTransparent, Input, Divider } from '_atoms';
 import { Slider, CardInfo, Menu, CampusNews, StudentNews } from '_molecules';
 import { Header } from 'react-navigation-stack'
 import { color } from '_styles';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Home extends React.Component {
     constructor(props) {
         super(props),
             this.state = {
                 activeImage: 0,
-                scrollAnimatedValue: new Animated.Value(0)
+                scrollAnimatedValue: new Animated.Value(0),
+                yAxis: 0
             }
     }
 
-    changeStatusBar=(a)=>{
-        StatusBar.setBarStyle(a<50? 'light-content' : 'dark-content', true)
+    changeStatusBar=(yAxis)=>{
+        StatusBar.setBarStyle(yAxis<50? 'light-content' : 'dark-content', true)
     }
+
+    handleScroll=(yAxis)=>{
+        this.changeStatusBar(yAxis)
+        this.setState({yAxis})
+    }
+
     render() {
 
         const animated = this.state.scrollAnimatedValue.interpolate({
@@ -37,6 +45,7 @@ class Home extends React.Component {
 
                 <HeaderTransparent animated={animated} elevation={elevation}>
                     <Input placeholder='Cari...' icon='search' containerStyle={{ flex: 1 }} />
+                    <Icon name='bell' color={this.state.yAxis<70? '#fff' : color.g500} size={20} style={{paddingHorizontal: 10}} />
                 </HeaderTransparent>
 
                 <Animated.ScrollView
@@ -44,7 +53,7 @@ class Home extends React.Component {
                     scrollEventThrottle={8}
                     onScroll={Animated.event(
                         [{ nativeEvent: { contentOffset: { y: this.state.scrollAnimatedValue } } }],
-                        { listener: event => this.changeStatusBar(event.nativeEvent.contentOffset.y) }
+                        { listener: event => this.handleScroll(event.nativeEvent.contentOffset.y) }
                     )}
                 >
                     <Image source={{ uri: data[this.state.activeImage] }} style={styles.backgroundImage} blurRadius={5} />
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
 
 const data = [
     'https://i.ytimg.com/vi/VagboRLrYgc/maxresdefault.jpg',
-    'https://d1d8o7q9jg8pjk.cloudfront.net/c/lg_5d2d85a27f4e9.jpeg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_DY-cJjg4J4M3stPk-MV5eqKD01oABHF-sfRntc6RImofcRRJ',
     'https://i1.wp.com/masterkasir.com/wp-content/uploads/2019/05/Kasir_Pintar_Free.jpg?fit=640%2C307&ssl=1'
 ]
 const news = [
