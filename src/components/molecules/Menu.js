@@ -2,46 +2,79 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { withNavigation } from 'react-navigation'
 import { color } from '_styles';
+import Modal from 'react-native-modal';
+import { FlatList } from 'react-native-gesture-handler';
 
-const Menu = (props) => {
+export const Menu = (props) => {
+
+    const renderItem = ({ item, index }) => {
+        return (
+            <TouchableOpacity key={index} style={styles.iconWrap} onPress={()=>props.onPress(item)}>
+                <Image source={item.icon} style={[styles.icon, { tintColor: index == menus.length - 1 ? color.g700 : null, width: index == menus.length - 1 ? 30 : ((width-10)/5)- 25 }]} resizeMode='contain' />
+            </TouchableOpacity>
+        )
+    }
 
     return (
         <>
             <View style={styles.container}>
-                {
-                    menus.map((data, index) =>
-                        <TouchableOpacity key={index} style={styles.iconWrap}>
-                            <Image source={data.icon} style={[styles.icon, { tintColor: index==menus.length-1? color.g700 : null, width: index==menus.length-1? 30 : widthIcon-25}]} resizeMode='contain' />
-                            {/* <Text style={styles.subTitle}>{data.title}</Text> */}
-                        </TouchableOpacity>
-                    )
-                }
+                <FlatList
+                    data={menus}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+                    numColumns={4} />
             </View>
         </>
     )
 }
+
+export const FullMenu = (props) => {
+
+    const renderItem = ({ item, index }) => {
+        return (
+            <TouchableOpacity key={index} style={styles.fullMenuWrap}>
+                <Image source={item.icon} style={styles.icon} resizeMode='contain' />
+            </TouchableOpacity>
+        )
+    }
+
+    return (
+        <Modal isVisible={props.isVisible} swipeDirection='down' onBackdropPress={props.toggle} onSwipeComplete={props.toggle} style={{ margin: 0, marginTop: height/3 }}>
+            <View style={styles.fullMenu}>
+                <FlatList
+                    data={fullmenu}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+                    numColumns={4} />
+            </View>
+        </Modal>
+    )
+}
+
 export const Main = (props) => {
 
+    const renderItem = ({ item, index }) => {
+        return (
+            <TouchableOpacity key={index} style={styles.mainWrap}>
+                <Image source={item.icon} style={styles.iconMain} resizeMode='contain' />
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <>
             <View style={styles.container}>
-                {
-                    main.map((data, index) =>
-                        <TouchableOpacity key={index} style={styles.mainWrap}>
-                            <Image source={data.icon} style={styles.iconMain} resizeMode='contain' />
-                        </TouchableOpacity>
-                    )
-                }
+                <FlatList
+                    data={main}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+                    horizontal />
             </View>
         </>
     )
 }
 
-export default withNavigation(Menu)
-
-const widthIcon = (Dimensions.get('screen').width - 10) / 5
-const iconWrap = (Dimensions.get('screen').width - 10) / 4
-const mainWrap = (Dimensions.get('screen').width-50) / 4
+const { width, height } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
     container: {
@@ -52,99 +85,149 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     iconWrap: {
-        width: iconWrap,
+        width: (width-10)/4,
         alignItems: 'center',
         // padding: 5,
     },
     mainWrap: {
-        width: mainWrap,
+        width: (width-50)/4,
+        alignItems: 'center',
+    },
+    fullMenuWrap: {
+        width: (width-40)/4,
         alignItems: 'center',
     },
     icon: {
-        width: widthIcon,
-        height: widthIcon,
+        width: (width-10)/5,
+        height: (width-10)/5,
     },
     iconMain: {
-        width: widthIcon-30,
-        height: widthIcon-30,
+        width: ((width-10)/5) - 30,
+        height: ((width-10)/5) - 30,
     },
     subTitle: {
         fontSize: 10,
         color: color.g700
     },
     containerTitle: {
-        paddingLeft: iconWrap / 4,
+        paddingLeft: ((width-10)/4) / 4,
         paddingBottom: 5
     },
     title: {
         fontWeight: 'bold',
         color: color.g700
+    },
+    fullMenu:{
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 20,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     }
 })
 
 const main = [
     {
         icon: require('_assets/icons/topup.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/transfer.png'),
-        navigate: '',
+        route: '',
         params: '',
     },
     {
         icon: require('_assets/icons/penarikan.png'),
-        navigate: '',
+        route: '',
         params: '',
     },
     {
         icon: require('_assets/icons/qrcode.png'),
-        navigate: '',
+        route: '',
         params: '',
     }
 ]
 
 const menus = [
-    
+
     {
         icon: require('_assets/icons/listrik.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/pulsa.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/paketdata.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/olshop.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/ewallet.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/multifinance.png'),
-        navigate: '',
+        route: '',
         params: ''
     },
     {
         icon: require('_assets/icons/more.png'),
-        navigate: '',
+        route: '',
+        params: 'toggle'
+    },
+]
+
+const fullmenu = [
+
+    {
+        icon: require('_assets/icons/listrik.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/pulsa.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/pascabayar.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/paketdata.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/olshop.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/ewallet.png'),
+        route: '',
+        params: ''
+    },
+    {
+        icon: require('_assets/icons/multifinance.png'),
+        route: '',
         params: ''
     },
 ]

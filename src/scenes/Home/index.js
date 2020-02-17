@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderTransparent, Input, Divider } from '_atoms';
-import { Slider, CardInfo, Menu, CampusNews, StudentNews } from '_molecules';
+import { Slider, CardInfo, Menu, CampusNews, StudentNews, FullMenu } from '_molecules';
 import { Header } from 'react-navigation-stack'
 import { color } from '_styles';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -13,7 +13,8 @@ class Home extends React.Component {
             this.state = {
                 activeImage: 0,
                 scrollAnimatedValue: new Animated.Value(0),
-                yAxis: 0
+                yAxis: 0,
+                fullMenu: false
             }
     }
 
@@ -24,6 +25,12 @@ class Home extends React.Component {
     handleScroll=(yAxis)=>{
         this.changeStatusBar(yAxis)
         this.setState({yAxis})
+    }
+
+    handlePress=(item)=>{
+        if(item.params=='toggle'){
+            this.setState({fullMenu: true})
+        }
     }
 
     render() {
@@ -59,10 +66,11 @@ class Home extends React.Component {
                     <Image source={{ uri: data[this.state.activeImage] }} style={styles.backgroundImage} blurRadius={5} />
                     <Slider data={data} setActiveImage={(img) => this.setState({ activeImage: img })} />
                     <CardInfo />
-                    <Menu />
+                    <Menu onPress={this.handlePress} />
                     <Divider />
                     <CampusNews data={news} />
                     <StudentNews data={news} />
+                    <FullMenu isVisible={this.state.fullMenu} toggle={()=>this.setState({fullMenu: false})} />
                 </Animated.ScrollView>
             </>
         )
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
         transform: [{ scaleX: 1.7 }],
     },
     scrollView: {
-        marginTop: -(Header.HEIGHT + 20),
+        marginTop: -(Header.HEIGHT + 15),
         // backgroundColor: color.g100
     }
 })
