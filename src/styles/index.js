@@ -12,7 +12,7 @@ export const color = {
     p800: '#1565C0',
     p900: '#0D47A1',
 
-    secondary : '#FF5722',
+    secondary : '#ffc10d',
     s100: '#FFCCBC',
     s200: '#FFAB91',
     s300: '#FF8A65',
