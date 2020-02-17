@@ -18,15 +18,14 @@ const AuthLoading = (props) => {
                 }
             })
             
-        },3000)
-
+        },1000)
     })
 
  
     return(
         <View style={styles.wrap}>
-            <Text style={styles.Text_welcome}> Selamat Datang </Text>
             <Image source={require('_assets/images/logo.png')} style={styles.logo} resizeMode='contain' />
+            <Text style={styles.Text_welcome}> Selamat Datang </Text>
             <Text style={styles.Text}> Nikmati Transaksi dengan Nyaman dan Aman Kami Hadir untuk Memudahkan semua Aktivitas Transaksi Anda </Text>
             <BarIndicator style={[styles.loading]}  color={'#fff'} size={30} />
         </View>
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
     },
 
     Text:{
+        marginTop:5,
         alignItems:'center',
         textAlign:'center',
         fontSize: 16,
