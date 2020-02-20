@@ -6,7 +6,7 @@ const Profile = (props) => {
 
     const logout = () => {
         AsyncStorage.clear()
-        props.navigation.navigate('Auth')
+        props.navigation.navigate('AuthLogin')
     }
 
     return (

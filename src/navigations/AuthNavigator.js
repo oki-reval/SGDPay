@@ -1,15 +1,15 @@
 import {createStackNavigator} from 'react-navigation-stack';
-
+import Intro from '_scenes/Auth/Intro';
 import Login from '_scenes/Auth/Login';
 
 const AuthNavigatorConfig = {
-	initialRouteName: 'Login',
+	initialRouteName: 'Intro',
 	header: null,
 	headerMode: 'none',
 };
 
 const RouteConfigs = {
-	Login
+	Intro,Login
 };
 
 const AuthNavigator = createStackNavigator(RouteConfigs, AuthNavigatorConfig);
