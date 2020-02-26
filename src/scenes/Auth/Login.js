@@ -12,8 +12,8 @@ class Login extends React.Component {
         super(props),
         this.state={
             user:{
-                username: '',
-                password: ''
+                username: '1157050149',
+                password: 'ramdan'
             },
             loading: false
         }
@@ -36,6 +36,7 @@ class Login extends React.Component {
                 this.props.navigation.navigate('MiddleWare')
             }).catch(err=>{
                 Alert.alert('Error', err.message)
+                console.log(err)
             })
     }
 
@@ -47,8 +48,8 @@ class Login extends React.Component {
                 <StatusBar hidden />
                 <View style={styles.wraper}>
                     <Image source={require('_assets/images/logo.png')} style={styles.logo} resizeMode='contain' />
-                    <Input placeholder='Email' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
-                    <Input placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
+                    <Input value={user.username} placeholder='Email' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
+                    <Input value={user.password} placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
                     <Button title='LOGIN' loading={loading} disabled={loading || disable} onPress={this.login} style={{marginTop: 20}} />
                 </View>
             </ImageBackground>
