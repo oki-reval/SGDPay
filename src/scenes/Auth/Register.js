@@ -6,13 +6,15 @@ import { connect } from 'react-redux';
 import { Button, Input } from '_atoms'
 import { color } from '_styles';
 import Axios from 'axios';
+import { Dropdown } from 'react-native-material-dropdown';
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props){
         super(props),
         this.state={
             user:{
                 username: '',
+                full_name: '',
                 password: ''
             },
             loading: false
@@ -25,10 +27,10 @@ class Login extends React.Component {
         this.setState({user})
     }
 
-    login = async () => {
+    register = async () => {
         this.setState({loading: true})
         const user = this.state.user
-        Axios.post('/auth/login', user)
+        Axios.post('/auth/register', user)
             .finally(()=>this.setState({loading: false}))
             .then(res=>{
                 AsyncStorage.setItem('token', res.data.access_token)
@@ -42,17 +44,19 @@ class Login extends React.Component {
 
     render() {
         const { user, loading } = this.state
-        const disable = !user.username || user.password.length<6
+        const disable = !user.username || !user.full_name || user.password.length<6
+        let data = [{val: 'Mahasiswa'},{val:'Dosen'},{val:'Pedagang/Lain-Lain'}];
         return (
-            <View style={styles.wraper,{height: height}} resizeMode='cover'>
+            <ImageBackground source={require('_assets/images/bg.jpg')} style={{height: height}} resizeMode='cover'>
                 <StatusBar hidden />
                 <View style={styles.wraper}>
                     <Image source={require('_assets/images/pic_auth.png')} style={styles.logo} resizeMode='contain' />
-                    <Input placeholder='Username' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
+                    <Input placeholder='User Name' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
+                    <Input placeholder='Full Name' icon='user' onChangeText={(val)=>this.handleChange('full_name', val)} />
                     <Input placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
-                    <Button title='LOGIN' loading={loading} disabled={loading || disable} onPress={this.login} style={{marginTop: 20}} />
+                    <Button title='REGISTER' loading={loading} disabled={loading || disable} onPress={this.register} style={{marginTop: 20}} />
                 </View>
-            </View>
+            </ImageBackground>
         )
     }
 }
@@ -64,7 +68,7 @@ const styles =StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(0,0,0,0.7)',
     },
     logo:{
         width: 120,
@@ -72,6 +76,7 @@ const styles =StyleSheet.create({
         marginBottom: 50,
         alignSelf: 'center'
     }
+
 })
 
 const mapStateToProps = state => {
@@ -80,4 +85,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Register);
