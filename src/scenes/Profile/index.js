@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet,Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Profile = (props) => {
@@ -9,11 +9,32 @@ const Profile = (props) => {
         props.navigation.navigate('AuthLogin')
     }
 
+    const toVerif = () =>{
+        props.navigation.navigate('verifikasi')
+    }
+
     return (
-        <TouchableOpacity onPress={logout}>
-            <Text>Logout</Text>
-        </TouchableOpacity>
+        <View style={styles.wraper,{height: height}} resizeMode='cover'>
+            <TouchableOpacity onPress={logout}>
+                <Text>Logout</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={toVerif}>
+                <Text>Verifikasi</Text>
+            </TouchableOpacity>
+        </View>
     )
+    
 }
+const { height } = Dimensions.get('screen')    
+
+const styles =StyleSheet.create({
+    wraper:{
+        flex: 1,
+        padding: 20,
+        justifyContent: 'center',
+        backgroundColor: 'white',
+    },
+})
 
 export default Profile

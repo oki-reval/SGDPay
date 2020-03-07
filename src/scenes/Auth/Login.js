@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, ImageBackground, Dimensions, Image, StyleSheet, StatusBar, Alert } from 'react-native';
+import { View, ImageBackground, Text, Dimensions, Image, StyleSheet, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { saveUser } from '_states/actions/user';
 import { connect } from 'react-redux';
-import { Button, Input } from '_atoms'
+import { Button, Input, ButtonGradient } from '_atoms';
 import { color } from '_styles';
 import Axios from 'axios';
 
@@ -47,8 +47,9 @@ class Login extends React.Component {
             <View style={styles.wraper,{height: height}} resizeMode='cover'>
                 <StatusBar hidden />
                 <View style={styles.wraper}>
-                    <Image source={require('_assets/images/pic_auth.png')} style={styles.logo} resizeMode='contain' />
-                    <Input placeholder='Username' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
+                    <Image source={require('_assets/images/sgdpay.png')} style={styles.logo} resizeMode='contain' />
+                    
+                    <Input placeholder='NIM / NIP' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
                     <Input placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
                     <Button title='LOGIN' loading={loading} disabled={loading || disable} onPress={this.login} style={{marginTop: 20}} />
                 </View>
@@ -67,9 +68,8 @@ const styles =StyleSheet.create({
         backgroundColor: 'white',
     },
     logo:{
-        width: 120,
-        height: 120,
-        marginBottom: 50,
+        width: 200,
+        height: 150,
         alignSelf: 'center'
     }
 })

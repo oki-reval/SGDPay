@@ -47,7 +47,7 @@ class Register extends React.Component {
         const disable = !user.username || !user.full_name || user.password.length<6
         let data = [{val: 'Mahasiswa'},{val:'Dosen'},{val:'Pedagang/Lain-Lain'}];
         return (
-            <ImageBackground source={require('_assets/images/bg.jpg')} style={{height: height}} resizeMode='cover'>
+            <View style={styles.wraper,{height: height}} resizeMode='cover'>
                 <StatusBar hidden />
                 <View style={styles.wraper}>
                     <Image source={require('_assets/images/pic_auth.png')} style={styles.logo} resizeMode='contain' />
@@ -56,7 +56,7 @@ class Register extends React.Component {
                     <Input placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
                     <Button title='REGISTER' loading={loading} disabled={loading || disable} onPress={this.register} style={{marginTop: 20}} />
                 </View>
-            </ImageBackground>
+            </View>
         )
     }
 }
@@ -68,7 +68,7 @@ const styles =StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,0.7)',
+        backgroundColor: 'white',
     },
     logo:{
         width: 120,

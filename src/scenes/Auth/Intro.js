@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Dimensions, Image, StyleSheet, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { saveUser } from '_states/actions/user';
+import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
-import { Button, Input } from '_atoms'
+import { ButtonGradient, Input } from '_atoms';
 import { color } from '_styles';
 
 class Intro extends React.Component{
-    
+
     toLogin = async () =>{
         this.props.navigation.navigate('Login')
     }
@@ -22,11 +23,14 @@ class Intro extends React.Component{
                  <StatusBar hidden />
                 <View style={styles.wraper}>
                     <Image source={require('_assets/images/pic_auth.png')} style={styles.logo} resizeMode='contain' />
-                    <Text style={styles.Text}> Nikmati layanan transaksi keuangan, mulai dari pembayaran, transfer, sampai investasi dari smartphone Anda</Text>
-                    <Button title='Login' onPress={this.toLogin} style={[styles.bacgroundButton,{marginBottom: 20}]} />
-                    <TouchableOpacity onPress={this.toRegister}>
-                        <Text style={[styles.Text,{marginBottom:50}]}> Belum akun SGDPay ? Buat disini</Text>
-                    </TouchableOpacity>
+                    <Text style={[styles.Text,{marginBottom: 50}]}> Nikmati layanan transaksi keuangan, 
+                    mulai dari pembayaran, transfer, sampai investasi dari smartphone Anda</Text>                   
+                    
+                    <ButtonGradient title='LOGIN'  onPress={this.toLogin} style={{marginBottom: 20}} />
+                   
+                    
+                    <Text style={[styles.Text,{marginBottom:50}]} onPress={this.toRegister}> Belum akun SGDPay ? Buat disini</Text>
+
                     </View>
 
                 </View>
@@ -66,8 +70,7 @@ const styles =StyleSheet.create({
     bacgroundButton: {
         backgroundColor: 'transparent',
         marginTop: 50
-    }
-
+    },
 })
 
 export default Intro ;

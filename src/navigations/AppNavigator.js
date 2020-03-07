@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeStack from '_navigations/HomeNavigator';
 import ProfileStack from '_navigations/ProfileNavigator';
+import verifikasi from '_scenes/Profile/verifikasi';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from '_styles';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
@@ -35,7 +36,7 @@ const RouteConfigs = {
     },
     Profile: {
         screen: ProfileStack,
-    },
+    }
 };
 
 const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
