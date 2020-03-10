@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import { View, Dimensions, Text, Image, TouchableOpacity } from "react-native";
+import { View, Dimensions, Text, Image, TouchableOpacity, StatusBar } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import Icon from "react-native-vector-icons/Ionicons";
 import * as Animatable from "react-native-animatable";
@@ -38,7 +37,8 @@ class QrCode extends React.Component {
     const { qr } = this.state
     return (
       <View style={{ flex: 1 }}>
-        <Header rightIcon={'bolt'} onBackPress={()=>this.props.navigation.navigate('Home')} />
+        <StatusBar barStyle='dark-content' />
+        <Header rightIcon={'bolt'} />
         <QRCodeScanner
           showMarker
           onRead={this.onSuccess.bind(this)}

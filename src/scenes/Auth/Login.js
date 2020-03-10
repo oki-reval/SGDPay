@@ -13,7 +13,7 @@ class Login extends React.Component {
         this.state={
             user:{
                 username: '1157050149',
-                password: 'ramdan'
+                password: '123456'
             },
             loading: false
         }
@@ -47,16 +47,9 @@ class Login extends React.Component {
             <View style={styles.wraper,{height: height}} resizeMode='cover'>
                 <StatusBar hidden />
                 <View style={styles.wraper}>
-<<<<<<< HEAD
                     <Image source={require('_assets/images/pic_auth.png')} style={styles.logo} resizeMode='contain' />
-                    <Input value={user.username} placeholder='Username' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
+                    <Input value={user.username} placeholder='NIM/NIP' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
                     <Input value={user.password} placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
-=======
-                    <Image source={require('_assets/images/sgdpay.png')} style={styles.logo} resizeMode='contain' />
-                    
-                    <Input placeholder='NIM / NIP' icon='user' onChangeText={(val)=>this.handleChange('username', val)} />
-                    <Input placeholder='Password' icon='eye-slash' password onChangeText={(val)=>this.handleChange('password', val)} />
->>>>>>> cac643354922bf285dd5b3d014dadf39f55f4b13
                     <Button title='LOGIN' loading={loading} disabled={loading || disable} onPress={this.login} style={{marginTop: 20}} />
                 </View>
             </View>

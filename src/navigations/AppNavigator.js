@@ -1,15 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-<<<<<<< HEAD
 import HomeStack from './HomeNavigator';
 import ProfileStack from './ProfileNavigator';
 import TransactionStack from './TransactioNavigator';
-=======
-import HomeStack from '_navigations/HomeNavigator';
-import ProfileStack from '_navigations/ProfileNavigator';
-import verifikasi from '_scenes/Profile/verifikasi';
->>>>>>> cac643354922bf285dd5b3d014dadf39f55f4b13
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from '_styles';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';

@@ -2,13 +2,17 @@ import React from 'react';
 import { View, Alert} from 'react-native';
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import { Loading } from '_molecules';
+import { PinStatus } from '_organisms';
 
 class Pin extends React.Component{
     constructor(props){
         super(props),
         this.state={
-            source: ''
+            source: '',
+            loading: true,
+            success: false
         }
     }
 
@@ -17,26 +21,37 @@ class Pin extends React.Component{
     }
 
     getFrame=()=>{
-        axios.post('https://sbudp-dev.posindonesia.co.id:9443/uin/',{
-            "client_id" : "uin-userdev",
-            "trx_type" : "CRP",
-            "account_no" : "0100032515",
-            "trx_date_time" : moment().format("YYYYMMDDhhmmss"),
-            "system_trace_audit" : "12",
-            "pos_terminal_type": "5027",
-            "jenis_crp": "C",
-            "kode_otp" : '308310',
-            "Sign": "b48555f0a5cc3638f9d468f3c06c91e0"
-        }).then(res=>{
+        axios.post(`/manage/pin`,{
+            account_no: '0100032515',
+            type: 'change'
+        })
+        .finally(()=>this.setState({loading: false}))
+        .then(res=>{
             this.setState({source: res.data})
         }).catch(err=>{
             Alert.alert('Error', err.response)
         })
     }
 
+    onMessage=(data)=>{
+        const status = data.nativeEvent.url.slice(50)
+        if(status=='success'){
+            this.setState({success: true})
+        }
+    }
+
     render(){
+        const { loading, success } = this.state
+        if(success){
+            return(
+                <PinStatus title='Selamat' subtitle='Kamu berhasil merubah PIN' onPress={()=>this.props.navigation.navigate('Profile')} />
+            )
+        }
         return(
-            <WebView injectedJavaScript={SCRIPT} onError={(msg)=>alert(msg)} onMessage={(asd)=>console.log(asd)} source={{html: this.state.source}} />
+            <View style={{flex: 1}}>
+                <WebView injectedJavaScript={SCRIPT} onError={(data)=>this.onMessage(data)} source={{html: this.state.source}} />
+                <Loading isLoading={loading} />
+            </View>
         )
     }
 }
