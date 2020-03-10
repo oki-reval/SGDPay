@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: color.g400,
         borderWidth: 1,
-        borderRadius: 10,
-        marginTop: 5,
+        borderRadius: 5,
+        marginVertical: 5,
         backgroundColor: color.g100
     },
     input: {
         flex: 1,
         borderRadius: 10,
-        height: 40,
+        height: 39,
         color: color.g700,
         paddingHorizontal: 10
     },
