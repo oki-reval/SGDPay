@@ -8,7 +8,6 @@ import Axios from 'axios';
 const AuthLoading = (props) => {
 
     useEffect(() => {
-        setTimeout(() =>{
         AsyncStorage.getItem('token')
             .then(val => {
                 Axios.defaults.headers.common['Authorization'] = 'Bearer ' + val;
@@ -19,13 +18,12 @@ const AuthLoading = (props) => {
                     props.navigation.navigate('Auth')
                 }
             })
-        },100);
     })
 
 
     return (
         <View style={styles.wrap}>
-            <BarIndicator  color={'#fff'} size={30} />
+            <BarIndicator color={'#fff'} size={30} />
         </View>
     )
 }
