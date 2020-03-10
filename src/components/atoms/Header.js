@@ -20,10 +20,10 @@ const Headers = (props) => {
             {
                 props.disableBack ? null :
                     <TouchableOpacity style={[styles.container, { paddingLeft: 15, paddingRight: 0 }]} onPress={handleBackButton}>
-                        <Icon name='chevron-left' size={18} />
+                        <Icon name='chevron-left' size={20} color='#fff' />
                     </TouchableOpacity>
             }
-            <View style={[styles.titleWraper, { flex: 1 }]}>
+            <View style={[styles.titleWraper, {width: '80%'} ]}>
                 <Text style={styles.name}>{props.title}</Text>
                 {
                     props.subTitle ?
@@ -33,7 +33,7 @@ const Headers = (props) => {
             {
                 props.rightIcon ?
                     <TouchableOpacity style={[styles.container, { paddingRight: 15 }]} onPress={props.onPress} >
-                        <Icon name={props.rightIcon} size={18} />
+                        <Icon name={props.rightIcon} color='#fff' size={20} />
                     </TouchableOpacity> : null
             }
         </View>
@@ -50,6 +50,7 @@ export const HeaderTransparent = (props) => {
 
 const styles = StyleSheet.create({
     wraper: {
+        flex: 1,
         height: Header.HEIGHT,
         flexDirection: 'row',
         shadowColor: '#000',
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         elevation: 3,
+        position: 'absolute',
+        top: 10,
     },
     wraperTransparent: {
         height: Header.HEIGHT+15,
