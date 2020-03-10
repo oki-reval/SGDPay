@@ -18,17 +18,12 @@ const AuthLoading = (props) => {
                     props.navigation.navigate('Auth')
                 }
             })
-
-
     })
 
 
     return (
         <View style={styles.wrap}>
-            <Text style={styles.Text_welcome}> Selamat Datang </Text>
-            <Image source={require('_assets/images/logo.png')} style={styles.logo} resizeMode='contain' />
-            <Text style={styles.Text}> Nikmati Transaksi dengan Nyaman dan Aman Kami Hadir untuk Memudahkan semua Aktivitas Transaksi Anda </Text>
-            <BarIndicator style={[styles.loading]} color={'#fff'} size={30} />
+            <BarIndicator color={'#fff'} size={30} />
         </View>
     )
 }
@@ -40,31 +35,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    Text_welcome: {
-        alignItems: 'center',
-        fontSize: 24,
-        color: '#fff',
-    },
-
-    Text: {
-        alignItems: 'center',
-        textAlign: 'center',
-        fontSize: 16,
-        color: '#fff',
-    },
-
-    logo: {
-        height: Dimensions.get('window').height / 5,
-        margin: 20
-    },
-    loading: {
-        width: '100%',
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: 0
-    }
 })
 
 export default AuthLoading;

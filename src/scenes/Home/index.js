@@ -18,6 +18,10 @@ class Home extends React.Component {
             }
     }
 
+    componentDidMount(){
+        console.disableYellowBox = true;
+    }
+
     changeStatusBar=(yAxis)=>{
         StatusBar.setBarStyle(yAxis<50? 'light-content' : 'dark-content', true)
     }
