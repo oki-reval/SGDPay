@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, ImageBackground, Text, Dimensions, Image, StyleSheet, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { saveUser } from '_states/actions/user';
 import { connect } from 'react-redux';
 import { Button, Input, ButtonGradient } from '_atoms';
 import { color } from '_styles';
@@ -30,9 +29,8 @@ class Login extends React.Component {
         const user = this.state.user
         Axios.post('/auth/login', user)
             .finally(()=>this.setState({loading: false}))
-            .then(res=>{
-                AsyncStorage.setItem('token', res.data.access_token)
-                this.props.dispatch(saveUser(res.data.user))
+            .then(async res=>{
+                await AsyncStorage.multiSet([['token', res.data.access_token], ['user', JSON.stringify(res.data.user)], ['wallet', JSON.stringify(res.data.wallet)]])
                 this.props.navigation.navigate('MiddleWare')
             }).catch(err=>{
                 Alert.alert('Error', err.message)

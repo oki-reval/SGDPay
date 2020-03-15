@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { color } from '_styles';
 import { BarIndicator } from 'react-native-indicators';
 import Axios from 'axios';
+import { saveUser, saveWallet } from '_states/actions/user';
+import { connect } from 'react-redux';
 
 const AuthLoading = (props) => {
 
@@ -18,7 +20,21 @@ const AuthLoading = (props) => {
                     props.navigation.navigate('Auth')
                 }
             })
-    })
+    }, [])
+
+    useEffect(() => {
+        AsyncStorage.getItem('user')
+            .then(val => {
+                props.dispatch(saveUser(JSON.parse(val)))
+            })
+    }, [])
+
+    useEffect(() => {
+        AsyncStorage.getItem('wallet')
+            .then(val => {
+                props.dispatch(saveWallet(JSON.parse(val)))
+            })
+    }, [])
 
 
     return (
@@ -37,4 +53,10 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AuthLoading;
+const mapStateToProps = state => {
+    return {
+        user: state.user.data
+    }
+}
+
+export default connect(mapStateToProps)(AuthLoading);
