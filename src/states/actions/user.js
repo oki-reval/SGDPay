@@ -4,3 +4,10 @@ export const saveUser=(data)=>{
         payload: data,
     }
 }
+
+export const saveWallet=(data)=>{
+    return{
+        type: 'SAVE_WALLET',
+        payload: data,
+    }
+}
