@@ -9,7 +9,7 @@ const PinStatus = (props) => {
             <Image source={props.failed? require('_assets/images/pic_failed.png') : require('_assets/images/ic_pin.png')} style={styles.img} resizeMode='contain' />
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.subTitle}>{props.subtitle}</Text>
-            <Button title='Ke Menu Utama' onPress={props.onPress} />
+            <Button title={props.buttonTittle??'Ke Menu Utama'} onPress={props.onPress} />
         </View>
     )
 }
