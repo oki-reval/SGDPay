@@ -85,12 +85,12 @@ render(){
   let dataAg = [{value: 'ISLAM'},{value:'KRISTEN'},{value:'HINDU'},{value:'BUDHA'},{value:'KONGHUCU'}];
   return (
 
-    <ViewPager style={styles.PageView} scrollEnabled={false} initialPage={0} ref={(viewPager) => {this.viewPager = viewPager}} scrollEnabled={true}>
+    <ViewPager style={styles.PageView} scrollEnabled={false} initialPage={0} ref={(viewPager) => {this.viewPager = viewPager}}>
       <ScrollView key="1" style={{flex:1,padding:20}}>
         <Text style={styles.Text_welcome}> Buat Rekening </Text>
 
         <Text style={styles.Text} > Nama Singkat </Text>
-        <InputForm placeholder='sgdpay' onChangeText={(val)=>this.handleChange('nama_singkat', val)}></InputForm>
+        <InputForm onChangeText={(val)=>this.handleChange('nama_singkat', val)}></InputForm>
         <Text style={styles.TextError}>{this.state.ErrorNP}</Text>
 
         <Text style={styles.Text} > Jenis Kelamin </Text>
@@ -114,9 +114,9 @@ render(){
         <Text style={styles.TextError}>{this.state.ErrorAG}</Text>
 
         <Text style={styles.Text}> Pekerjaan </Text>
-        <Input value='KTP'></Input>
+        <Input />
         <Text style={styles.Text}> Nomor Identitas </Text>
-        <Input value='123xxxxxxxxxxxxx'></Input>
+        <Input value=''></Input>
 
         <ButtonGradient title='Selanjutnya' loading={loading}  onPress={this.toValidate} style={{marginTop:30}}/>
         <Text style={{height:50}}>  </Text>
