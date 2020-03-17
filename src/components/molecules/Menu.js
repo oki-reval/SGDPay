@@ -55,7 +55,7 @@ export const Main = (props) => {
 
     const renderItem = ({ item, index }) => {
         return (
-            <TouchableOpacity key={index} style={styles.mainWrap}>
+            <TouchableOpacity onPress={() => props.handleTouch(item)} key={index} style={styles.mainWrap}>
                 <Image source={item.icon} style={styles.iconMain} resizeMode='contain' />
             </TouchableOpacity>
         )
@@ -135,7 +135,7 @@ const main = [
     {
         icon: require('_assets/icons/transfer.png'),
         route: '',
-        params: '',
+        params: 'transfer',
     },
     {
         icon: require('_assets/icons/penarikan.png'),

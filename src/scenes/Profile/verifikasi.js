@@ -135,6 +135,7 @@ class Verifikasi extends React.Component{
         .finally(()=>this.setState({loading: false}))
         .then(res=>{
             console.log(res.data)
+            this.props
         }).catch(err=>{
             Alert.alert('Error', err.response.data.message)
             console.log(err.response)

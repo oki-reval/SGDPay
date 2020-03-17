@@ -5,10 +5,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import { Main } from './Menu';
 
-const CardInfo = () => {
+const CardInfo = (props) => {
     return (
         <View style={[styles.card, style.shadow]}>
-            <Main />
+            <Main  
+                handleTouch={props.onPress}
+            />
             {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Icon name='ios-wallet' size={24} color={color.primary} style={{ marginRight: 10 }} />
                 <View>
