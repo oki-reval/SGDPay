@@ -33,12 +33,11 @@ class Home extends React.Component {
 
     handlePress=(item)=>{
         
-        this.props.navigation.navigate('transfer'); 
         
         if(item.params=='toggle'){
             this.setState({fullMenu: true})
         } else if(item.params=='transfer'){
-            //this.setState({fullMenu: true})
+            this.props.navigation.navigate('Transfer'); 
         }
 
 

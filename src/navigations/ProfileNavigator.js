@@ -21,7 +21,11 @@ const RouteConfigs = {
 			header: null
 		}
 	},
-	verifikasi
+	verifikasi:{
+		screen:verifikasi,
+		navigationOptions:{
+		}
+	}
 };
 
 const ProfileNavigator = createStackNavigator(RouteConfigs, ProfileNavigatorConfig);

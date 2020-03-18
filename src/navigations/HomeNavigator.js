@@ -19,7 +19,7 @@ const RouteConfigs = {
 		navigationOptions: {
 			header: null
 		}
-	},
+	}
 };
 
 const HomeNavigator = createStackNavigator(RouteConfigs, HomeNavigatorConfig);
