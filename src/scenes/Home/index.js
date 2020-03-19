@@ -32,9 +32,16 @@ class Home extends React.Component {
     }
 
     handlePress=(item)=>{
+        
+        this.props.navigation.navigate('transfer'); 
+        
         if(item.params=='toggle'){
             this.setState({fullMenu: true})
+        } else if(item.params=='transfer'){
+            //this.setState({fullMenu: true})
         }
+
+
     }
 
     render() {
@@ -69,7 +76,7 @@ class Home extends React.Component {
                 >
                     <Image source={{ uri: data[this.state.activeImage] }} style={styles.backgroundImage} blurRadius={5} />
                     <Slider data={data} setActiveImage={(img) => this.setState({ activeImage: img })} />
-                    <CardInfo />
+                    <CardInfo onPress={this.handlePress} />
                     <Menu onPress={this.handlePress} />
                     <Divider />
                     <CampusNews data={news} />

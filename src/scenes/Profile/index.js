@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { HeaderProfile } from '_molecules';
+import { Card } from '_atoms';
+import QRCode from 'react-native-qrcode-svg';
+import { connect } from 'react-redux';
 
 const Profile = (props) => {
 
@@ -10,11 +14,15 @@ const Profile = (props) => {
     }
 
     const toVerif = () => {
-        props.navigation.navigate('verifikasi')
+        props.navigation.navigate('Verifikasi')
     }
 
     return (
         <View style={styles.wraper, { height: height }} resizeMode='cover'>
+            <HeaderProfile name={props.user.fullname} saldo={props.wallet.saldo} account={props.wallet.no_rekening} />
+            <Card style={{margin: 10, marginTop: 40, width: width-80, alignSelf: 'center'}}>
+                <QRCode value={props.wallet.no_rekening} size={width-100} />
+            </Card>
             <TouchableOpacity onPress={logout}>
                 <Text>Logout</Text>
             </TouchableOpacity>
@@ -29,7 +37,7 @@ const Profile = (props) => {
     )
 
 }
-const { height } = Dimensions.get('screen')
+const { height, width } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
     wraper: {
@@ -37,7 +45,15 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'center',
         backgroundColor: 'white',
+        alignItems: 'center'
     },
 })
 
-export default Profile
+const mapStateToProps = state => {
+    return {
+        user: state.user.data,
+        wallet: state.user.wallet,
+    }
+}
+
+export default connect(mapStateToProps)(Profile);

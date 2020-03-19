@@ -2,7 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Profile from '_scenes/Profile';
 import Pin from '_scenes/Auth/Pin';
-import verifikasi from '_scenes/Profile/verifikasi';
+import Verifikasi from '_scenes/Profile/Verifikasi';
 
 const ProfileNavigatorConfig = {
 	initialRouteName: 'Profile',
@@ -12,7 +12,7 @@ const RouteConfigs = {
 	Profile: {
 		screen: Profile,
 		navigationOptions: {
-			
+			header: null
 		}
 	},
 	Pin: {
@@ -21,7 +21,12 @@ const RouteConfigs = {
 			header: null
 		}
 	},
-	verifikasi
+	Verifikasi :{
+		screen: Verifikasi,
+		navigationOptions: {
+			header: null
+		}
+	},
 };
 
 const ProfileNavigator = createStackNavigator(RouteConfigs, ProfileNavigatorConfig);
