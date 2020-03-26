@@ -37,7 +37,8 @@ class Pin extends React.Component {
                     this.setState({ error: true })
                     return;
                 }
-                this.setState({ source: res.data, error: false })
+                this.setState({ source: res.data.html, error: false })
+                console.log(res.data.html)
             }).catch(err => {
                 Alert.alert('Error', err.response)
             })
