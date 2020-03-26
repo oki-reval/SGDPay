@@ -3,6 +3,7 @@ import Slider from './Slider';
 import CardInfo from './CardInfo';
 import { Menu, FullMenu } from './Menu';
 import { CampusNews, StudentNews } from './CampusNews';
+import HeaderProfile from './HeaderProfile';
 export {
     Menu,
     Slider,
@@ -10,5 +11,6 @@ export {
     CardInfo,
     FullMenu,
     CampusNews,
-    StudentNews
+    StudentNews,
+    HeaderProfile
 }

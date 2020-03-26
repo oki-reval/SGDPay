@@ -1,4 +1,8 @@
 import PinStatus from './PinStatus';
+import Transfer from './Transfer/Transfer';
+import TransferHistory from './Transfer/TransferHistory';
 export {
-    PinStatus
+    Transfer,
+    PinStatus,
+    TransferHistory,
 }

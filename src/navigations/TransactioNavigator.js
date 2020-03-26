@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
-
 import QrCode from '_scenes/Transaction/QrCode';
-import Transfer from '_scenes/Transaction/Transfer';
+import TransferInquiry from '_scenes/Transaction/TransferInquiry';
+import { color } from '_styles';
 
 const TransactionNavigatorConfig = {
     initialRouteName: 'QrCode',
@@ -14,10 +14,14 @@ const RouteConfigs = {
             header: null
         }
     },
-    Transfer:{
-        screen:Transfer,
+    TransferInquiry:{
+        screen: TransferInquiry,
         navigationOptions:{
-            header:null
+            title: 'Transfer',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
         }
     }
 };

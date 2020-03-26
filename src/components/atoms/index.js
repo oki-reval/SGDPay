@@ -4,15 +4,16 @@ import InputForm from './InputForm'
 import ButtonGradient from './ButtonGradient';
 import GradientCard from './GradientCard'
 import Header, { HeaderTransparent} from './Header';
-import { Divider } from './Common';
+import { Divider, Card } from './Common';
 
 export {
+    Card,
     Input,
     Button,
-    ButtonGradient,
     Header,
     GradientCard,
     Divider,
+    InputForm,
+    ButtonGradient,
     HeaderTransparent,
-    InputForm
 }
