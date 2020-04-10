@@ -1,6 +1,10 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import QrCode from '_scenes/Transaction/QrCode';
 import TransferInquiry from '_scenes/Transaction/TransferInquiry';
+import PenarikanInquiry from '_scenes/Transaction/PenarikanInquiry';
+import ListrikInquiry from '_scenes/Transaction/ListrikInquiry';
+import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
+import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
 import { color } from '_styles';
 
 const TransactionNavigatorConfig = {
@@ -23,7 +27,47 @@ const RouteConfigs = {
                 backgroundColor: color.primary
             }
         }
-    }
+    },
+    PenarikanInquiry:{
+        screen: PenarikanInquiry,
+        navigationOptions:{
+            title:'Penarikan',
+            headerTintColor:'#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
+    ListrikInquiry:{
+        screen: ListrikInquiry,
+        navigationOptions:{
+            title:'Listrik',
+            headerTintColor:'#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
+    PascaBayarInquiry:{
+        screen: PascaBayarInquiry,
+        navigationOptions:{
+            title:'Pulsa',
+            headerTintColor:'#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
+    PaketDataInquiry:{
+        screen: PaketDataInquiry,
+        navigationOptions:{
+            title:'Paket Data',
+            headerTintColor:'#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
 };
 
 const TransactionNavigator = createStackNavigator(RouteConfigs, TransactionNavigatorConfig);

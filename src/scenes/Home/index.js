@@ -38,6 +38,23 @@ class Home extends React.Component {
             this.setState({fullMenu: true})
         } else if(item.params=='transfer'){
             this.props.navigation.navigate('Transfer'); 
+        } else if(item.params=='penarikan'){
+            this.props.navigation.navigate('Penarikan');
+        } else if(item.params=='listrik'){
+            this.props.navigation.navigate('Listrik');
+        } else if (item.params=='pulsa'){
+            
+        } 
+        else if (item.params=='pascabayar'){
+            this.props.navigation.navigate('PascaBayar');
+        } else if (item.params=='paketData'){
+            this.props.navigation.navigate('PaketData');
+        } else if (item.params=='olshop'){
+            this.props.navigation.navigate('Penarikan');
+        } else if (item.params=='ewalet'){
+            this.props.navigation.navigate('Penarikan');
+        } else if (item.params=='multifinance'){
+            this.props.navigation.navigate('Penarikan');
         }
 
 

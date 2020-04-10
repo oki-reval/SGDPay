@@ -12,7 +12,7 @@ const RouteConfigs = {
 	Profile: {
 		screen: Profile,
 		navigationOptions: {
-			header: null
+			
 		}
 	},
 	Pin: {
@@ -21,12 +21,12 @@ const RouteConfigs = {
 			header: null
 		}
 	},
-	Verifikasi :{
-		screen: Verifikasi,
-		navigationOptions: {
-			header: null
+	Verifikasi:{
+		screen:Verifikasi,
+		navigationOptions:{
+			
 		}
-	},
+	}
 };
 
 const ProfileNavigator = createStackNavigator(RouteConfigs, ProfileNavigatorConfig);

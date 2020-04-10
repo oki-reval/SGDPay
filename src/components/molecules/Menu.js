@@ -135,12 +135,12 @@ const main = [
     {
         icon: require('_assets/icons/transfer.png'),
         route: '',
-        params: 'transfer',
+        params: 'transfer'
     },
     {
         icon: require('_assets/icons/penarikan.png'),
         route: '',
-        params: '',
+        params: 'penarikan'
     },
     {
         icon: require('_assets/icons/qrcode.png'),
@@ -154,37 +154,37 @@ const menus = [
     {
         icon: require('_assets/icons/listrik.png'),
         route: '',
-        params: ''
+        params: 'listrik'
     },
     {
         icon: require('_assets/icons/pulsa.png'),
         route: '',
-        params: ''
+        params: 'pulsa'
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
         route: '',
-        params: ''
+        params: 'pascabayar'
     },
     {
         icon: require('_assets/icons/paketdata.png'),
         route: '',
-        params: ''
+        params: 'paketData'
     },
     {
         icon: require('_assets/icons/olshop.png'),
         route: '',
-        params: ''
+        params: 'olshop'
     },
     {
         icon: require('_assets/icons/ewallet.png'),
         route: '',
-        params: ''
+        params: 'ewalet'
     },
     {
         icon: require('_assets/icons/multifinance.png'),
         route: '',
-        params: ''
+        params: 'multifinance'
     },
     {
         icon: require('_assets/icons/more.png'),
