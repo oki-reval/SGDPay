@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, ImageBackground, Dimensions, Image, StyleSheet, StatusBar, Alert } from 'react-native';
+import { View, Dimensions, Image, StyleSheet, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { saveUser } from '_states/actions/user';
 import { connect } from 'react-redux';
 import { Button, Input } from '_atoms'
-import { color } from '_styles';
 import Axios from 'axios';
-import { Dropdown } from 'react-native-material-dropdown';
 
 class Register extends React.Component {
     constructor(props){
@@ -34,7 +31,6 @@ class Register extends React.Component {
             .finally(()=>this.setState({loading: false}))
             .then(res=>{
                 AsyncStorage.setItem('token', res.data.access_token)
-                this.props.dispatch(saveUser(res.data.user))
                 this.props.navigation.navigate('MiddleWare')
             }).catch(err=>{
                 Alert.alert('Error', err.message)

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { color } from '_styles';
 import { BarIndicator } from 'react-native-indicators';
 import Axios from 'axios';
-import { saveUser, saveWallet } from '_states/actions/user';
+import { getUser } from '_states/actions/user';
 import { connect } from 'react-redux';
 
 const AuthLoading = (props) => {
@@ -13,8 +13,9 @@ const AuthLoading = (props) => {
         AsyncStorage.getItem('token')
             .then(val => {
                 Axios.defaults.headers.common['Authorization'] = 'Bearer ' + val;
-                Axios.defaults.baseURL = 'http://192.168.1.6:8000/api';
+                Axios.defaults.baseURL = 'http://192.168.1.4:8000/api';
                 if (val) {
+                    getUsers()
                     props.navigation.navigate('App')
                 } else {
                     props.navigation.navigate('Auth')
@@ -22,19 +23,9 @@ const AuthLoading = (props) => {
             })
     }, [])
 
-    useEffect(() => {
-        AsyncStorage.getItem('user')
-            .then(val => {
-                props.dispatch(saveUser(JSON.parse(val)))
-            })
-    }, [])
-
-    useEffect(() => {
-        AsyncStorage.getItem('wallet')
-            .then(val => {
-                props.dispatch(saveWallet(JSON.parse(val)))
-            })
-    }, [])
+    const getUsers=()=>{
+        props.dispatch(getUser())
+    }
 
 
     return (

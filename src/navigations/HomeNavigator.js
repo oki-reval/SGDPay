@@ -4,6 +4,8 @@ import Home from '_scenes/Home';
 import Pin from '_scenes/Auth/Pin';
 import Transfer from '_scenes/Transaction/Transfer';
 import TransferInquiry from '_scenes/Transaction/TransferInquiry';
+import PinTransaction from '_scenes/Transaction/PinTransaction';
+import PulsaScreen from '_scenes/Transaction/PulsaScreen';
 import { color } from '_styles';
 
 const HomeNavigatorConfig = {
@@ -43,6 +45,27 @@ const RouteConfigs = {
             headerStyle:{
                 backgroundColor: color.primary
             }
+        }
+	},
+	PulsaScreen:{
+        screen: PulsaScreen,
+        navigationOptions:{
+            title: 'Pulsa Prabayar',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+	},
+	PinTransaction:{
+        screen: PinTransaction,
+        navigationOptions:{
+            title: 'PIN Transfer',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            },
+            headerLeft: null
         }
     }
 };

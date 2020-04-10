@@ -30,7 +30,7 @@ class Login extends React.Component {
         Axios.post('/auth/login', user)
             .finally(()=>this.setState({loading: false}))
             .then(async res=>{
-                await AsyncStorage.multiSet([['token', res.data.access_token], ['user', JSON.stringify(res.data.user)], ['wallet', JSON.stringify(res.data.wallet)]])
+                await AsyncStorage.multiSet([['token', res.data.access_token]])
                 this.props.navigation.navigate('MiddleWare')
             }).catch(err=>{
                 Alert.alert('Error', err.message)

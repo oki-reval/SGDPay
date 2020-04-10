@@ -1,35 +1,19 @@
-import React, {useState} from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { Input, ButtonGradient } from '_atoms';
+import React from 'react';
+import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { Button } from '_atoms';
 import { color } from '_styles';
 import { convertToRp } from '_utils';
-import axios from 'axios'
 import moment from 'moment';
 import 'moment/min/locales';
+import Icon from 'react-native-vector-icons/Ionicons'
 
-const TransferInquiry = (props) => {
-    const data = props.navigation.getParam('data')
-    const [loading, setLoading] = useState(false)
-
-    const transfer = () => {
-        setLoading(true)
-		axios.post(`/transfer`, {
-			description: data.description,
-			destination: data.dest_account_no,
-            amount: data.amount,
-            type: 'transfer'
-		}).finally(() => setLoading(false)
-		).then(res => {
-			console.log(res)
-            props.navigation.navigate('PinTransaction', {html: res.data.html, data})
-		}).catch(err => {
-			console.log(err)
-		})
-    }
-    
+const PinStatus = (props) => {
+    const data = props.data
     return (
-        <View style={[styles.scene]}>
-            <View style={{ flex: 1 }}>
+        <View style={styles.wrap}>
+            <Icon name={`ios-${props.failed ? 'close' : 'checkmark'}-circle-outline`} style={{ color: props.failed ? '#EB5757' : '#65DA8D', alignSelf: 'center' }} size={100} />
+            <Text style={{fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color: props.failed ? '#EB5757' : '#65DA8D', marginBottom: 20}}>Transfer {props.failed? 'Gagal' : 'Berhasil'}</Text>
+            <ScrollView style={{ flex: 1 }}>
                 <Text style={styles.title}>Nominal Transfer</Text>
                 <Text style={styles.value}>{convertToRp(data.amount)}</Text>
                 <Text style={styles.title}>Rekening Tujuan</Text>
@@ -39,19 +23,21 @@ const TransferInquiry = (props) => {
                 <Text style={styles.title}>Biaya Admin</Text>
                 <Text style={styles.value}>{convertToRp(data.fee_amount)}</Text>
                 <Text style={styles.title}>Tanggal Transaksi</Text>
-                <Text style={styles.value}>{moment(data.trx_date_time,'YYYYMMDDHHmmss').locale('id').format('dddd, DD MMM YYYY HH:ss')}</Text>
+                <Text style={styles.value}>{moment(data.trx_date_time, 'YYYYMMDDHHmmss').locale('id').format('dddd, DD MMM YYYY HH:ss')}</Text>
                 <Text style={styles.title}>ID Transaksi</Text>
                 <Text style={styles.value}>{data.system_trace_audit}</Text>
                 <Text style={styles.title}>Keterangan</Text>
                 <Text style={styles.value}>{data.description}</Text>
-            </View>
-            <ButtonGradient loading={loading} disabled={loading} title='Transfer' onPress={transfer} />
+            </ScrollView>
+            <Button title={'Ke Menu Utama'} onPress={props.onPress} />
         </View>
     )
 }
 
+const { width, height } = Dimensions.get('screen')
+
 const styles = StyleSheet.create({
-    scene: {
+    wrap: {
         flex: 1,
         backgroundColor: 'white',
         padding: 10
@@ -68,7 +54,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: color.g300,
         paddingBottom: 10
-    }
-});
-
-export default TransferInquiry;
+    },
+})
+export default PinStatus

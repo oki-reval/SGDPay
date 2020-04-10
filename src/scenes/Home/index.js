@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated } from 'react-native';
+import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated, Alert, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderTransparent, Input, Divider } from '_atoms';
-import { Slider, CardInfo, Menu, CampusNews, StudentNews, FullMenu } from '_molecules';
+import { Slider, CardInfo, Menu, CampusNews, StudentNews, FullMenu, Loading } from '_molecules';
 import { Header } from 'react-navigation-stack'
 import { color } from '_styles';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { getUser } from '_states/actions/user';
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,33 +15,39 @@ class Home extends React.Component {
                 activeImage: 0,
                 scrollAnimatedValue: new Animated.Value(0),
                 yAxis: 0,
-                fullMenu: false
+                fullMenu: false,
             }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.disableYellowBox = true;
     }
 
-    changeStatusBar=(yAxis)=>{
-        StatusBar.setBarStyle(yAxis<50? 'light-content' : 'dark-content', true)
+    changeStatusBar = (yAxis) => {
+        StatusBar.setBarStyle(yAxis < 50 ? 'light-content' : 'dark-content', true)
     }
 
-    handleScroll=(yAxis)=>{
+    handleScroll = (yAxis) => {
         this.changeStatusBar(yAxis)
-        this.setState({yAxis})
+        this.setState({ yAxis })
     }
 
-    handlePress=(item)=>{
-        
-        
-        if(item.params=='toggle'){
-            this.setState({fullMenu: true})
-        } else if(item.params=='transfer'){
-            this.props.navigation.navigate('Transfer'); 
+    handlePress = (item) => {
+
+
+        if (item.route == 'toggle') {
+            this.setState({ fullMenu: true })
+        } else if (item.route == 'alert') {
+            Alert.alert('', item.params)
+        } else {
+            this.props.navigation.navigate(item.route);
         }
 
 
+    }
+
+    getUsers = () => {
+        this.props.dispatch(getUser())
     }
 
     render() {
@@ -62,7 +69,7 @@ class Home extends React.Component {
 
                 <HeaderTransparent animated={animated} elevation={elevation}>
                     <Input placeholder='Cari...' icon='search' containerStyle={{ flex: 1 }} />
-                    <Icon name='bell' color={this.state.yAxis<70? '#fff' : color.g500} size={20} style={{paddingHorizontal: 10}} />
+                    <Icon name='bell' color={this.state.yAxis < 70 ? '#fff' : color.g500} size={20} style={{ paddingHorizontal: 10 }} />
                 </HeaderTransparent>
 
                 <Animated.ScrollView
@@ -72,6 +79,13 @@ class Home extends React.Component {
                         [{ nativeEvent: { contentOffset: { y: this.state.scrollAnimatedValue } } }],
                         { listener: event => this.handleScroll(event.nativeEvent.contentOffset.y) }
                     )}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.props.loading}
+                            onRefresh={this.getUsers}
+                            progressViewOffset={50}
+                        />
+                    }
                 >
                     <Image source={{ uri: data[this.state.activeImage] }} style={styles.backgroundImage} blurRadius={5} />
                     <Slider data={data} setActiveImage={(img) => this.setState({ activeImage: img })} />
@@ -80,7 +94,7 @@ class Home extends React.Component {
                     <Divider />
                     <CampusNews data={news} />
                     <StudentNews data={news} />
-                    <FullMenu isVisible={this.state.fullMenu} toggle={()=>this.setState({fullMenu: false})} />
+                    <FullMenu isVisible={this.state.fullMenu} toggle={() => this.setState({ fullMenu: false })} />
                 </Animated.ScrollView>
             </>
         )
@@ -113,7 +127,8 @@ const news = [
 
 const mapStateToProps = state => {
     return {
-        user: state.user.data
+        user: state.user.data,
+        loading: state.user.loading
     }
 }
 

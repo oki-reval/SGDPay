@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeStack from './HomeNavigator';
 import ProfileStack from './ProfileNavigator';
 import TransactionStack from './TransactioNavigator';
+import MessageStack from './MessageNavigator';
+import MoreStack from './MoreNavigator';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from '_styles';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
@@ -19,10 +21,14 @@ const TabNavigatorConfig =
             let iconName;
             if (routeName == 'Home') {
                 iconName = `home`;
+            } else if (routeName == 'Pesan') {
+                iconName = `message`;
             } else if (routeName == 'Scan') {
                 iconName = `home`;
             } else if (routeName == 'Profile') {
                 iconName = `profile`;
+            } else if (routeName == 'Lainnya') {
+                iconName = `more`;
             }
             if (routeName == 'Scan') {
                 return (
@@ -46,6 +52,9 @@ const RouteConfigs = {
     Home: {
         screen: HomeStack,
     },
+    Pesan: {
+        screen: MessageStack,
+    },
     Scan: {
         screen: TransactionStack,
         navigationOptions: {
@@ -54,6 +63,9 @@ const RouteConfigs = {
     },
     Profile: {
         screen: ProfileStack,
+    },
+    Lainnya: {
+        screen: MoreStack,
     }
 };
 

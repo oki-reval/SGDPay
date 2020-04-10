@@ -1,7 +1,9 @@
-export const saveUser=(data)=>{
+import axios from 'axios'
+
+export const getUser=()=>{
     return{
-        type: 'SAVE_USER',
-        payload: data,
+        type: 'GET_USER',
+        payload: axios.get(`/user`),
     }
 }
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, Dimensions, ScrollView, RefreshControl } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { HeaderProfile } from '_molecules';
 import { Card } from '_atoms';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
+import { getUser } from '_states/actions/user';
 
 const Profile = (props) => {
 
@@ -17,11 +18,29 @@ const Profile = (props) => {
         props.navigation.navigate('Verifikasi')
     }
 
+    const qrcode = {
+        type: 'transfer',
+        value: props.wallet.no_rekening
+    }
+
+    const getUsers = () => {
+        props.dispatch(getUser())
+    }
+
     return (
-        <View style={styles.wraper, { height: height }} resizeMode='cover'>
+        <ScrollView
+            style={styles.wraper, { height: height }}
+            resizeMode='cover'
+            refreshControl={
+                <RefreshControl
+                    refreshing={props.loading}
+                    onRefresh={getUsers}
+                />
+            }
+        >
             <HeaderProfile name={props.user.fullname} saldo={props.wallet.saldo} account={props.wallet.no_rekening} />
-            <Card style={{margin: 10, marginTop: 40, width: width-80, alignSelf: 'center'}}>
-                <QRCode value={props.wallet.no_rekening} size={width-100} />
+            <Card style={{ margin: 10, marginTop: 40, width: width - 80, alignSelf: 'center' }}>
+                <QRCode value={JSON.stringify(qrcode)} size={width - 100} />
             </Card>
             <TouchableOpacity onPress={logout}>
                 <Text>Logout</Text>
@@ -33,7 +52,7 @@ const Profile = (props) => {
             <TouchableOpacity onPress={toVerif}>
                 <Text>Verifikasi</Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     )
 
 }
@@ -53,6 +72,7 @@ const mapStateToProps = state => {
     return {
         user: state.user.data,
         wallet: state.user.wallet,
+        loading: state.user.loading,
     }
 }
 
