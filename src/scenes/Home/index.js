@@ -36,6 +36,8 @@ class Home extends React.Component {
         
         if(item.params=='toggle'){
             this.setState({fullMenu: true})
+        } else if(item.params=='topup'){
+            this.props.navigation.navigate('TopUp')
         } else if(item.params=='transfer'){
             this.props.navigation.navigate('Transfer'); 
         } else if(item.params=='penarikan'){
@@ -43,9 +45,8 @@ class Home extends React.Component {
         } else if(item.params=='listrik'){
             this.props.navigation.navigate('Listrik');
         } else if (item.params=='pulsa'){
-            
-        } 
-        else if (item.params=='pascabayar'){
+        
+        } else if (item.params=='pascabayar'){
             this.props.navigation.navigate('PascaBayar');
         } else if (item.params=='paketData'){
             this.props.navigation.navigate('PaketData');
@@ -56,7 +57,6 @@ class Home extends React.Component {
         } else if (item.params=='multifinance'){
             this.props.navigation.navigate('Penarikan');
         }
-
 
     }
 

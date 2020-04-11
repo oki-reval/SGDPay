@@ -2,6 +2,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import Home from '_scenes/Home';
 import Pin from '_scenes/Auth/Pin';
+import TopUp from '_scenes/Transaction/TopUp';
 import Penarikan from '_scenes/Transaction/Penarikan';
 import PenarikanInquiry from '_scenes/Transaction/PenarikanInquiry';
 import Transfer from '_scenes/Transaction/Transfer';
@@ -30,7 +31,13 @@ const RouteConfigs = {
 		navigationOptions: {
 			header: null
 		}
-	},
+    },
+    TopUp:{
+        screen:TopUp,
+        navigationOptions:{
+            header: null
+        }
+    },
 	Transfer:{
         screen: Transfer,
         navigationOptions:{

@@ -130,7 +130,7 @@ const main = [
     {
         icon: require('_assets/icons/topup.png'),
         route: '',
-        params: ''
+        params: 'topup'
     },
     {
         icon: require('_assets/icons/transfer.png'),
