@@ -21,21 +21,24 @@ const TabNavigatorConfig =
             let iconName;
             if (routeName == 'Home') {
                 iconName = `home`;
+            } else if (routeName == 'Berita') {
+                iconName = `th-large`;
+            } else if (routeName == 'Scan') {
+                iconName = `qrcode`;
             } else if (routeName == 'Pesan') {
                 iconName = `message`;
-            } else if (routeName == 'Scan') {
-                iconName = `home`;
             } else if (routeName == 'Profile') {
                 iconName = `profile`;
-            } else if (routeName == 'Lainnya') {
-                iconName = `more`;
             }
             if (routeName == 'Scan') {
                 return (
                     <View style={{ backgroundColor: color.primary, height: 55, width: 55, borderRadius: 30, alignItems: 'center', justifyContent: 'center' }}>
-                        <FontAwesome name='qrcode' color='#fff' size={28} />
+                        <FontAwesome name={iconName} color='#fff' size={28} />
                     </View>
                 )
+            }
+            if (routeName == 'Berita') {
+                return <FontAwesome name={iconName} color={tintColor} size={20} />
             }
             return <Icon name={iconName} size={20} color={tintColor} />
         },
@@ -52,8 +55,8 @@ const RouteConfigs = {
     Home: {
         screen: HomeStack,
     },
-    Pesan: {
-        screen: MessageStack,
+    Berita: {
+        screen: MoreStack,
     },
     Scan: {
         screen: TransactionStack,
@@ -61,12 +64,12 @@ const RouteConfigs = {
             tabBarLabel: ' '
         }
     },
+    Pesan: {
+        screen: MessageStack,
+    },
     Profile: {
         screen: ProfileStack,
     },
-    Lainnya: {
-        screen: MoreStack,
-    }
 };
 
 const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);

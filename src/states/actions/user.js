@@ -13,3 +13,10 @@ export const saveWallet=(data)=>{
         payload: data,
     }
 }
+
+export const saveNotif=(data)=>{
+    return{
+        type: 'SAVE_NOTIF',
+        payload: data,
+    }
+}

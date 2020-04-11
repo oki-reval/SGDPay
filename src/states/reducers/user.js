@@ -1,7 +1,8 @@
 let initialState={
     data: {},
     wallet: {},
-    loading: false
+    loading: false,
+    notif: []
 }
 
 export default user = (state = initialState, action)=>{
@@ -27,6 +28,11 @@ switch(action.type){
         return{
             ...state,
             wallet : action.payload,
+        }
+    case 'SAVE_NOTIF':
+        return{
+            ...state,
+            notif : action.payload,
         }
     default:
         return state

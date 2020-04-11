@@ -26,10 +26,11 @@ class Pin extends React.Component {
     }
 
     getFrame = () => {
+        const type = this.props.navigation.getParam('type')
         this.setState({loading: true})
         axios.post(`/manage/pin`, {
             account_no: this.props.wallet.no_rekening,
-            type: 'change'
+            type
         })
             .finally(() => this.setState({ loading: false }))
             .then(res => {

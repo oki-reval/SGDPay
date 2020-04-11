@@ -40,7 +40,7 @@ class Home extends React.Component {
         } else if (item.route == 'alert') {
             Alert.alert('', item.params)
         } else {
-            this.props.navigation.navigate(item.route);
+            this.props.navigation.navigate(item.route, {data: item.params});
         }
 
 
