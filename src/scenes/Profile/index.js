@@ -9,15 +9,6 @@ import { getUser } from '_states/actions/user';
 
 const Profile = (props) => {
 
-    const logout = () => {
-        AsyncStorage.clear()
-        props.navigation.navigate('AuthLogin')
-    }
-
-    const toVerif = () => {
-        props.navigation.navigate('Verifikasi')
-    }
-
     const qrcode = {
         type: 'transfer',
         value: props.wallet.no_rekening
@@ -42,16 +33,6 @@ const Profile = (props) => {
             <Card style={{ margin: 10, marginTop: 40, width: width - 80, alignSelf: 'center' }}>
                 <QRCode value={JSON.stringify(qrcode)} size={width - 100} />
             </Card>
-            <TouchableOpacity onPress={logout}>
-                <Text>Logout</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => props.navigation.navigate('Pin')}>
-                <Text>Pin</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={toVerif}>
-                <Text>Verifikasi</Text>
-            </TouchableOpacity>
         </ScrollView>
     )
 

@@ -11,8 +11,8 @@ const PinStatus = (props) => {
     const data = props.data
     return (
         <View style={styles.wrap}>
-            <Icon name={`ios-${props.failed ? 'close' : 'checkmark'}-circle-outline`} style={{ color: props.failed ? '#EB5757' : '#65DA8D', alignSelf: 'center' }} size={100} />
-            <Text style={{fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color: props.failed ? '#EB5757' : '#65DA8D', marginBottom: 20}}>Transfer {props.failed? 'Gagal' : 'Berhasil'}</Text>
+            <Icon name={`ios-${props.failed ? 'close' : 'checkmark'}-circle-outline`} style={{ color: props.failed ? color.success : color.failed, alignSelf: 'center' }} size={100} />
+            <Text style={{fontSize: 16, fontWeight: 'bold', alignSelf: 'center', color: props.failed ? color.success : color.failed, marginBottom: 20}}>Transfer {props.failed? 'Gagal' : 'Berhasil'}</Text>
             <ScrollView style={{ flex: 1 }}>
                 <Text style={styles.title}>Nominal Transfer</Text>
                 <Text style={styles.value}>{convertToRp(data.amount)}</Text>

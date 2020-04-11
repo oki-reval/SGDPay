@@ -1,6 +1,7 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
 import Message from '_scenes/Message';
+import MessageDetail from '_scenes/Message/MessageDetail';
 import { color } from '_styles';
 
 const MessageNavigatorConfig = {
@@ -9,7 +10,24 @@ const MessageNavigatorConfig = {
 
 const RouteConfigs = {
 	Message: {
-		screen: Message,
+        screen: Message,
+        navigationOptions: {
+            title: 'Pesan',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary,
+            }
+		},
+		
+	},
+	MessageDetail: {
+        screen: MessageDetail,
+        navigationOptions: {
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary,
+            }
+		},
 		
 	}
 };

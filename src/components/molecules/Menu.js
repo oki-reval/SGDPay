@@ -139,8 +139,8 @@ const main = [
     },
     {
         icon: require('_assets/icons/penarikan.png'),
-        route: '',
-        params: '',
+        route: 'Penarikan',
+        params: ''
     },
     // {
     //     icon: require('_assets/icons/qrcode.png'),
@@ -153,7 +153,7 @@ const menus = [
 
     {
         icon: require('_assets/icons/listrik.png'),
-        route: '',
+        route: 'Listrik',
         params: ''
     },
     {
@@ -163,27 +163,27 @@ const menus = [
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
-        route: 'alert',
+        route: 'PascaBayar',
         params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/paketdata.png'),
-        route: 'alert',
+        route: 'PaketData',
         params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/olshop.png'),
-        route: 'alert',
+        route: 'Penarikan',
         params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/ewallet.png'),
-        route: 'alert',
+        route: 'Penarikan',
         params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/multifinance.png'),
-        route: 'alert',
+        route: 'Penarikan',
         params: 'Coming Soon'
     },
     {
