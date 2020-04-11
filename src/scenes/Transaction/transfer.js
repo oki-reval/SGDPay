@@ -1,73 +1,97 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { color } from '_styles';
 import { connect } from 'react-redux';
 import { Transfer as Transfers, TransferHistory } from '_organisms';
+import { Loading } from '_molecules';
+import Axios from 'axios';
+import Toast from 'react-native-simple-toast';
 
-const Transfer = (props) => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'first', title: 'Transfer' },
-    { key: 'second', title: 'Riwayat' }]);
-  const [destination, setDestination] = useState('')
-  const [amount, setAmount] = useState('')
-  const [description, setDescription] = useState('')
-  const [loading, setLoading] = useState(false)
+class Transfer extends React.Component {
+	constructor(props) {
+        super(props),
+            this.state = {
+				index: 0,
+				loading: false,
+				routes: [
+					{ key: 'first', title: 'Transfer' },
+					{ key: 'second', title: 'Riwayat' }
+				]
+			}
+	}
+
+	submitInquiry = ({description, destination, amount}) => {
+		this.setState({ loading: true })
+		Axios.post(`/transfer`, {
+			description,
+			destination,
+			amount
+		}).finally(() => this.setState({ loading: false })
+		).then(res => {
+			this.props.navigation.navigate('TransferInquiry', {data: res.data})
+			console.log(res)
+		}).catch(err => {
+			console.log(err.response.data.message)
+			Toast.show(err.response.data.message??'Terjadi kesalahan teknis', Toast.LONG)
+		})
+	}
+
+	FirstRoute = () => {
+		return (
+			<Transfers
+				dest={this.props.navigation.getParam('dest')}
+				saldo={this.props.wallet.saldo}
+				onPress={(v)=>this.submitInquiry(v)}
+			/>
+		)
+	}
+
+	SecondRoute = () => (
+		<TransferHistory />
+	);
 
 
+	renderTabBar = props => {
+		return (
+			<TabBar
+				{...props}
+				indicatorStyle={{ backgroundColor: 'white' }}
+				style={[{ backgroundColor: color.primary },]}
+				onPress={(x) => alert('asd')}
+			/>
+		)
+	};
 
+	renderScene = SceneMap({
+		first: this.FirstRoute,
+		second: this.SecondRoute,
+	});
 
-  const FirstRoute = () => (
-    <Transfers
-      saldo={props.wallet.saldo}
-      onPress={()=>props.navigation.navigate('TransferInquiry')}
-      setDest={(v)=>setDestination(v)}
-      setDesc={(v)=>setDescription(v)}
-      setAmount={(v)=>setAmount(v)}
-      value={{description, destination, amount}}
-      loading={loading}
-       />
-  );
-
-  const SecondRoute = () => (
-    <TransferHistory />
-  );
-
-  const initialLayout = { width: Dimensions.get('window').width };
-
-  const renderTabBar = props => (
-    <TabBar
-      {...props}
-      indicatorStyle={{ backgroundColor: 'white' }}
-      style={[{ backgroundColor: color.primary },]}
-    />
-  );
-
-  const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-  });
-
-  return (
-    <View style={{flex: 1}}>
-      <StatusBar translucent={false} backgroundColor={color.primary} barStyle='light-content' />
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        renderTabBar={renderTabBar}
-        onIndexChange={setIndex}
-        initialLayout={initialLayout}
-      />
-    </View>
-  );
+	render() {
+		const initialLayout = { width: Dimensions.get('window').width };
+		const { index, routes, loading } = this.state
+		return (
+			<View style={{ flex: 1 }}>
+				<StatusBar translucent={false} backgroundColor={color.primary} barStyle='light-content' />
+				<TabView
+					navigationState={{ index, routes }}
+					renderScene={this.renderScene}
+					renderTabBar={this.renderTabBar}
+					onIndexChange={(index) => this.setState({ index })}
+					initialLayout={initialLayout}
+				/>
+				<Loading isLoading={loading} />
+			</View>
+		);
+	}
 }
 
 const mapStateToProps = state => {
-  return {
-    user: state.user.data,
-    wallet: state.user.wallet
-  }
+	return {
+		user: state.user.data,
+		wallet: state.user.wallet
+	}
 }
 
 export default connect(mapStateToProps)(Transfer);

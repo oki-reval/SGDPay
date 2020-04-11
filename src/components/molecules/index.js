@@ -4,6 +4,7 @@ import CardInfo from './CardInfo';
 import { Menu, FullMenu } from './Menu';
 import { CampusNews, StudentNews } from './CampusNews';
 import HeaderProfile from './HeaderProfile';
+import PulsaDenom from './PulsaDenom'
 export {
     Menu,
     Slider,
@@ -11,6 +12,7 @@ export {
     CardInfo,
     FullMenu,
     CampusNews,
+    PulsaDenom,
     StudentNews,
     HeaderProfile
 }

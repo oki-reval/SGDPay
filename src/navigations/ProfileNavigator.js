@@ -12,7 +12,7 @@ const RouteConfigs = {
 	Profile: {
 		screen: Profile,
 		navigationOptions: {
-			
+			header: null
 		}
 	},
 	Pin: {

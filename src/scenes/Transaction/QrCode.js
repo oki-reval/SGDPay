@@ -6,6 +6,7 @@ import * as Animatable from "react-native-animatable";
 import QR from 'react-native-qrcode-svg';
 import { color } from '_styles';
 import { Header } from '_atoms';
+import { connect } from 'react-redux';
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -19,7 +20,8 @@ class QrCode extends React.Component {
   }
 
   onSuccess(e) {
-    alert(e);
+    const data = JSON.parse(e.data)
+    if(data.type=='transfer') this.props.navigation.navigate('Transfer', {dest: data.value})
   }
 
   makeSlideOutTranslation(translationType) {
@@ -35,10 +37,13 @@ class QrCode extends React.Component {
 
   render() {
     const { qr } = this.state
+    const qrcode = {
+      type: 'transfer',
+      value: this.props.wallet.no_rekening
+    }
     return (
       <View style={{ flex: 1 }}>
         <StatusBar barStyle='dark-content' />
-        <Header rightIcon={'bolt'} />
         <QRCodeScanner
           showMarker
           onRead={this.onSuccess.bind(this)}
@@ -48,8 +53,13 @@ class QrCode extends React.Component {
               {
                 qr ?
                   <>
+                    <View style={styles.header}>
+                      <TouchableOpacity style={{ padding: 20 }}>
+                        <Icon name='ios-arrow-back' color='#fff' size={32} onPress={() => this.props.navigation.navigate('Home')} />
+                      </TouchableOpacity>
+                    </View>
                     <View style={styles.topOverlay}>
-                      <Text style={{ fontSize: 30, color: "white" }}>QR CODE SCANNER</Text>
+                      <Text style={{ fontSize: 24, color: "white" }}>Arahkan ke QR Code</Text>
                     </View>
 
                     <View style={{ flexDirection: "row" }}>
@@ -73,7 +83,7 @@ class QrCode extends React.Component {
                     <View style={styles.bottomOverlay} />
                   </> :
                   <View style={styles.qrcode}>
-                    <QR value={'asd'} size={SCREEN_WIDTH - 130} />
+                    <QR value={JSON.stringify(qrcode)} size={SCREEN_WIDTH - 130} />
                   </View>
               }
             </View>
@@ -111,6 +121,12 @@ const styles = {
     backgroundColor: "transparent"
   },
 
+  header: {
+    width: SCREEN_WIDTH,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    paddingTop: 10
+  },
   topOverlay: {
     flex: 1,
     height: SCREEN_WIDTH,
@@ -174,4 +190,11 @@ const styles = {
   }
 };
 
-export default QrCode;
+const mapStateToProps = state => {
+  return {
+      user: state.user.data,
+      wallet: state.user.wallet
+  }
+}
+
+export default connect(mapStateToProps)(QrCode);

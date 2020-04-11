@@ -5,7 +5,7 @@ import { color, style } from '_styles';
 export const Divider = () => {
     const widthScreen = Dimensions.get('screen').width
     return (
-        <View style={{ height: 5, width: widthScreen, backgroundColor: color.g300 }} />
+        <View style={{ height: 5, width: widthScreen, backgroundColor: color.g200 }} />
     )
 }
 

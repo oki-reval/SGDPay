@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         // padding: 5,
     },
     mainWrap: {
-        width: (width-50)/4,
+        width: (width-30)/3,
         alignItems: 'center',
     },
     fullMenuWrap: {
@@ -134,62 +134,62 @@ const main = [
     },
     {
         icon: require('_assets/icons/transfer.png'),
-        route: '',
-        params: 'transfer'
+        route: 'Transfer',
+        params: '',
     },
     {
         icon: require('_assets/icons/penarikan.png'),
-        route: '',
-        params: 'penarikan'
+        route: 'Penarikan',
+        params: ''
     },
-    {
-        icon: require('_assets/icons/qrcode.png'),
-        route: '',
-        params: '',
-    }
+    // {
+    //     icon: require('_assets/icons/qrcode.png'),
+    //     route: '',
+    //     params: '',
+    // }
 ]
 
 const menus = [
 
     {
         icon: require('_assets/icons/listrik.png'),
-        route: '',
-        params: 'listrik'
+        route: 'Listrik',
+        params: ''
     },
     {
         icon: require('_assets/icons/pulsa.png'),
-        route: '',
-        params: 'pulsa'
+        route: 'PulsaScreen',
+        params: ''
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
-        route: '',
-        params: 'pascabayar'
+        route: 'PascaBayar',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/paketdata.png'),
-        route: '',
-        params: 'paketData'
+        route: 'PaketData',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/olshop.png'),
-        route: '',
-        params: 'olshop'
+        route: 'Penarikan',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/ewallet.png'),
-        route: '',
-        params: 'ewalet'
+        route: 'Penarikan',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/multifinance.png'),
-        route: '',
-        params: 'multifinance'
+        route: 'Penarikan',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/more.png'),
-        route: '',
-        params: 'toggle'
+        route: 'toggle',
+        params: ''
     },
 ]
 
@@ -197,37 +197,37 @@ const fullmenu = [
 
     {
         icon: require('_assets/icons/listrik.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/pulsa.png'),
-        route: '',
+        route: 'PulsaScreen',
         params: ''
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/paketdata.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/olshop.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/ewallet.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
     {
         icon: require('_assets/icons/multifinance.png'),
-        route: '',
-        params: ''
+        route: 'alert',
+        params: 'Coming Soon'
     },
 ]

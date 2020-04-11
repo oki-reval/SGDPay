@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
 import { WebView } from 'react-native-webview';
-import axios from 'axios';
-import moment from 'moment';
+import { getUser } from '_states/actions/user';
 import { connect } from 'react-redux';
 import { Loading } from '_molecules';
-import { PinStatus } from '_organisms';
+import { TransferStatus } from '_organisms';
 
 class Pin extends React.Component {
     constructor(props) {
         super(props),
             this.state = {
-                source: '',
+                source: props.navigation.getParam('html'),
+                data: props.navigation.getParam('data'),
                 loading: false,
                 success: false,
                 failed: false,
@@ -21,33 +21,10 @@ class Pin extends React.Component {
             }
     }
 
-    componentDidMount() {
-        this.getFrame()
-    }
-
-    getFrame = () => {
-        const type = this.props.navigation.getParam('type')
-        this.setState({loading: true})
-        axios.post(`/manage/pin`, {
-            account_no: this.props.wallet.no_rekening,
-            type
-        })
-            .finally(() => this.setState({ loading: false }))
-            .then(res => {
-                if (res.data == 'Expected leading [0-9a-fA-F] character but was 0x9') {
-                    this.setState({ error: true })
-                    return;
-                }
-                this.setState({ source: res.data.html, error: false })
-                console.log(res.data.html)
-            }).catch(err => {
-                Alert.alert('Error', err.response)
-            })
-    }
-
     onMessage = (data) => {
         const status = data.nativeEvent.url.slice(50)
         if (status == 'success') {
+            this.getUsers()
             this.setState({ success: true, failed: false, title: 'Selamat!', subtitle: 'Kamu berhasil merubah PIN' })
         } else if (status == 'PinIncorrect::Invalid%20PIN') {
             this.setState({ success: true, failed: true, title: 'Ooops!', subtitle: 'PIN yang kamu masukan sepertinya keliru, silahkan coba lagi' })
@@ -56,18 +33,21 @@ class Pin extends React.Component {
         }
     }
 
+    getUsers=()=>{
+        this.props.dispatch(getUser())
+    }
+
     render() {
         const { loading, success, failed, title, subtitle, error } = this.state
         if (success) {
             return (
-                <PinStatus title={title} subtitle={subtitle} failed={failed} onPress={() => this.props.navigation.navigate('Profile')} />
+                <TransferStatus data={this.state.data} failed={failed} onPress={() => this.props.navigation.navigate('Home')} />
             )
         }
         if (error) {
             return (
                 <View style={{flex: 1}}>
-                    <Loading isLoading={loading} />
-                    <PinStatus title={'Ooops!'} subtitle={'Terjadi kesalahan sistem, silahkan coba lagi.'} buttonTittle='RELOAD' failed onPress={this.getFrame} />
+                    <TransferStatus data={this.state.data} buttonTittle='RELOAD' failed onPress={() => this.props.navigation.navigate('Home')} />
                 </View>
             )
         }

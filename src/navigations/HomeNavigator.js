@@ -6,12 +6,15 @@ import Penarikan from '_scenes/Transaction/Penarikan';
 import PenarikanInquiry from '_scenes/Transaction/PenarikanInquiry';
 import Transfer from '_scenes/Transaction/Transfer';
 import TransferInquiry from '_scenes/Transaction/TransferInquiry';
+import PinTransaction from '_scenes/Transaction/PinTransaction';
+import PulsaScreen from '_scenes/Transaction/PulsaScreen';
 import Listrik from '_scenes/Transaction/Listrik';
 import ListrikInquiry from '_scenes/Transaction/ListrikInquiry';
 import PascaBayar from '_scenes/Transaction/PascaBayar';
 import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
 import PaketData from '_scenes/Transaction/PaketData';
 import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
+import HistoryDetail from '_scenes/Transaction/HistoryDetail';
 import { color } from '_styles';
 
 const HomeNavigatorConfig = {
@@ -53,6 +56,22 @@ const RouteConfigs = {
             }
         }
 	},
+	HistoryDetail:{
+        screen: HistoryDetail,
+        navigationOptions:{
+            title: 'Detail Riwayat',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+	},
+	PulsaScreen:{
+        screen: PulsaScreen,
+        navigationOptions:{
+            title: 'Pulsa Prabayar',
+        }
+    },
 	Penarikan:{
 		screen: Penarikan,
         navigationOptions:{
@@ -73,6 +92,17 @@ const RouteConfigs = {
             headerStyle:{
                 backgroundColor: color.primary
             }
+        }
+	},
+	PinTransaction:{
+        screen: PinTransaction,
+        navigationOptions:{
+            title: 'PIN Transfer',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            },
+            headerLeft: null
         }
     },
     Listrik:{
