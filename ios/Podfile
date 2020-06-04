@@ -40,6 +40,8 @@ target 'core' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'coreTests' do
     inherit! :search_paths
     # Pods for testing

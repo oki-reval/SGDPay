@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Input, ButtonGradient } from '_atoms';
 import { color } from '_styles';
 
-const PulsaInquiry = (props) => (
+const PascaBayarInquiry = (props) => (
     <View style={[styles.scene]}>
         <View style={{flex: 1}}>
             <Text style={styles.title}>Tempat Penarikan</Text>
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PulsaInquiry;
+export default PascaBayarInquiry;

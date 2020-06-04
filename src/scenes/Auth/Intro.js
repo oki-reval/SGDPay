@@ -1,11 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Dimensions, Image, StyleSheet, StatusBar } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import { saveUser } from '_states/actions/user';
-import LinearGradient from 'react-native-linear-gradient';
-import { connect } from 'react-redux';
+import { View, Text, Dimensions, Image, StyleSheet, StatusBar } from 'react-native';
 import { ButtonGradient, Input } from '_atoms';
-import { color } from '_styles';
 
 class Intro extends React.Component{
 

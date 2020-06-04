@@ -6,11 +6,12 @@ import LinearGradient from 'react-native-linear-gradient';
 const GradientCard = (props) => {
     return (
         
-            <LinearGradient colors={['#009BA0','#65DA8D' ]} style={[styles.wraper ]} start={{ x: 0, y: 1 }} end={{ x: 1, y: 6 }} >
-                <View>
+    <LinearGradient colors={['#009BA0','#65DA8D' ]} style={[styles.wraper ]} start={{ x: 0, y: 1 }} end={{ x: 1, y: 6 }} >
+        <View>
 
-                </View>
-            </LinearGradient>
+        </View>
+    </LinearGradient>
+
     )
 }
 
