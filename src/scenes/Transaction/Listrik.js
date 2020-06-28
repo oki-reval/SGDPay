@@ -3,13 +3,13 @@ import { View, StyleSheet, Dimensions, StatusBar, Text, Image, TouchableOpacity 
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { color } from '_styles';
 import { connect } from 'react-redux';
-import { Penarikan as Penarikans, PenarikanHistory } from '_organisms';
+import { Tagihan, Token} from '_organisms';
 
 const Listrik = (props) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: 'first', title: 'Listrik' },
-    { key: 'second', title: 'Riwayat' }]);
+    { key: 'first', title: 'Tagihan' },
+    { key: 'second', title: 'Token' }]);
   const [withdrawal, setWithdrawal] = useState('')
   const [amount, setAmount] = useState('')
   const [description, setDescription] = useState('')
@@ -17,19 +17,11 @@ const Listrik = (props) => {
 
 
   const FirstRoute = () => (
-    <Penarikans
-      saldo={props.wallet.saldo}
-      onPress={()=>props.navigation.navigate('PenarikanHistory')}
-      setWith={(v)=>setWithdrawal(v)}
-      setDesc={(v)=>setDescription(v)}
-      setAmount={(v)=>setAmount(v)}
-      value={{description, withdrawal, amount}}
-      loading={loading}
-       />
+    <Tagihan />
   );
 
   const SecondRoute = () => (
-    <PenarikanHistory />
+    <Token />
   );
 
   const initialLayout = { width: Dimensions.get('window').width };

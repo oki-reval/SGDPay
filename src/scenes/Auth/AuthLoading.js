@@ -13,7 +13,7 @@ const AuthLoading = (props) => {
         AsyncStorage.getItem('token')
             .then(val => {
                 Axios.defaults.headers.common['Authorization'] = 'Bearer ' + val;
-                Axios.defaults.baseURL = 'http://sgd.adajejak.com/api';
+                Axios.defaults.baseURL = 'http://192.168.1.12:8000/api';
                 if (val) {
                     getUsers()
                     props.navigation.navigate('App')

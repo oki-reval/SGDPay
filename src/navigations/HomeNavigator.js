@@ -16,6 +16,7 @@ import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
 import PaketData from '_scenes/Transaction/PaketData';
 import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
 import HistoryDetail from '_scenes/Transaction/HistoryDetail';
+import ListrikPembayaran from '_scenes/Transaction/ListrikPembayaran';
 import { color } from '_styles';
 
 const HomeNavigatorConfig = {
@@ -128,6 +129,16 @@ const RouteConfigs = {
         screen: ListrikInquiry,
         navigationOptions:{
             title: 'ListrikInquiry',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
+    ListrikPembayaran:{
+        screen: ListrikPembayaran,
+        navigationOptions:{
+            title: 'Pembayaran',
             headerTintColor: '#fff',
             headerStyle:{
                 backgroundColor: color.primary
