@@ -12,6 +12,8 @@ import PulsaScreen from '_scenes/Transaction/PulsaScreen';
 import Listrik from '_scenes/Transaction/Listrik';
 import ListrikInquiry from '_scenes/Transaction/ListrikInquiry';
 import PascaBayar from '_scenes/Transaction/PascaBayar';
+import UinProduct from '_scenes/Transaction/UinProduct';
+import UinProductDetail from '_scenes/Transaction/UinProductDetail';
 import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
 import PaketData from '_scenes/Transaction/PaketData';
 import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
@@ -145,17 +147,17 @@ const RouteConfigs = {
             }
         }
     },
-    PascaBayar:{
-		screen: PascaBayar,
-        navigationOptions:{
-            title: 'PascaBayar',
-            headerTintColor: '#fff',
-            headerStyle:{
-                backgroundColor: color.primary,
-                elevation: 0,
-                shadowRadius: 0
-            }
-        }
+    UinProduct:{
+        screen: UinProduct,
+        navigationOptions: {
+			header: null
+		}
+    },
+    UinProductDetail:{
+        screen: UinProductDetail,
+        navigationOptions: {
+			header: null
+		}
 	},
 	PascaBayarInquiry:{
         screen: PascaBayarInquiry,

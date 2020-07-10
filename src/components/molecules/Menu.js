@@ -163,7 +163,7 @@ const menus = [
     },
     {
         icon: require('_assets/icons/pascabayar.png'),
-        route: 'PascaBayar',
+        route: 'UinProduct',
         params: 'Coming Soon'
     },
     {

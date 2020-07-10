@@ -6,6 +6,7 @@ import Axios from 'axios';
 
 const TokenDenom = (props) => {
     const [data, setData] = useState([])
+    
     useEffect(()=>{
         getDenom()
     },[])
