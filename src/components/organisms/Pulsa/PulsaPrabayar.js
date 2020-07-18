@@ -7,7 +7,7 @@ import { Loading, PulsaDenom } from '_molecules'
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class PulsaScreen extends React.Component {
+class PulsaPrabayar extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: `Pembelian ${navigation.getParam('type')}`,
@@ -28,6 +28,11 @@ class PulsaScreen extends React.Component {
     }
 
     componentDidMount() {
+
+    }
+
+    sendProviderToComp(provider){
+        this.setState({provider})
 
     }
 
@@ -180,4 +185,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(PulsaScreen);
+export default connect(mapStateToProps)(PulsaPrabayar);

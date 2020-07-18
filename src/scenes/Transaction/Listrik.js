@@ -5,14 +5,12 @@ import { color } from '_styles';
 import { connect } from 'react-redux';
 import { Tagihan, Token} from '_organisms';
 
+
 const Listrik = (props) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: 'first', title: 'Tagihan' },
     { key: 'second', title: 'Token' }]);
-  const [withdrawal, setWithdrawal] = useState('')
-  const [amount, setAmount] = useState('')
-  const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
 
 

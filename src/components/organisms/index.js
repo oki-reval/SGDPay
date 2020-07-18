@@ -2,6 +2,8 @@ import PinStatus from './PinStatus';
 import Transfer from './Transfer/Transfer';
 import TransferHistory from './Transfer/TransferHistory';
 import TransferStatus from './Transfer/TransferStatus';
+import PulsaPrabayar from './Pulsa/PulsaPrabayar';
+import PulsaPascaBayar from './Pulsa/PulsaPascaBayar';
 import Penarikan from './Penarikan/Penarikan';
 import PenarikanHistory from './Penarikan/PenarikanHistory';
 import Tagihan from './Listrik/Tagihan';
@@ -16,5 +18,8 @@ export {
     TransferHistory,
     PenarikanHistory,
     Tagihan,
-    Token
+    Token,
+    PulsaPrabayar,
+    PulsaPascaBayar,
+
 }

@@ -5,7 +5,7 @@ import { color, style } from '_styles';
 import { Input, ButtonGradient } from '_atoms';
 import Axios from 'axios';
 
-class ListrikPembayaran extends React.Component {
+class PulsaPembayaran extends React.Component {
 	constructor(props) {
 		super(props),
 			this.state = {
@@ -30,7 +30,7 @@ class ListrikPembayaran extends React.Component {
 	getPayment = () => {
 		const {data, type} = this.state;
 
-		Axios.post(`/pln/type=${type}`,{
+		Axios.post(`/pln/${type}`,{
             type : 'payment',
 			billNumber : data.billNumber,
 			paymentCode: data.paymentCode,
@@ -122,4 +122,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(ListrikPembayaran);
+export default connect(mapStateToProps)(PulsaPembayaran);

@@ -8,15 +8,14 @@ import PenarikanInquiry from '_scenes/Transaction/PenarikanInquiry';
 import Transfer from '_scenes/Transaction/Transfer';
 import TransferInquiry from '_scenes/Transaction/TransferInquiry';
 import PinTransaction from '_scenes/Transaction/PinTransaction';
-import PulsaScreen from '_scenes/Transaction/PulsaScreen';
 import Listrik from '_scenes/Transaction/Listrik';
 import ListrikInquiry from '_scenes/Transaction/ListrikInquiry';
-import PascaBayar from '_scenes/Transaction/PascaBayar';
 import UinProduct from '_scenes/Transaction/UinProduct';
 import UinProductDetail from '_scenes/Transaction/UinProductDetail';
 import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
 import PaketData from '_scenes/Transaction/PaketData';
 import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
+import Pulsa from '_scenes/Transaction/Pulsa';
 import HistoryDetail from '_scenes/Transaction/HistoryDetail';
 import ListrikPembayaran from '_scenes/Transaction/ListrikPembayaran';
 import { color } from '_styles';
@@ -76,12 +75,6 @@ const RouteConfigs = {
             }
         }
 	},
-	PulsaScreen:{
-        screen: PulsaScreen,
-        navigationOptions:{
-            title: 'Pulsa Prabayar',
-        }
-    },
 	Penarikan:{
 		screen: Penarikan,
         navigationOptions:{
@@ -188,6 +181,18 @@ const RouteConfigs = {
             headerTintColor: '#fff',
             headerStyle:{
                 backgroundColor: color.primary
+            }
+        }
+    },
+    Pulsa:{
+		screen: Pulsa,
+        navigationOptions:{
+            title: 'Pulsa',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary,
+                elevation: 0,
+                shadowRadius: 0
             }
         }
 	},

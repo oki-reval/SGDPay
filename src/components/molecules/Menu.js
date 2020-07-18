@@ -158,7 +158,7 @@ const menus = [
     },
     {
         icon: require('_assets/icons/pulsa.png'),
-        route: 'PulsaScreen',
+        route: 'Pulsa',
         params: ''
     },
     {
