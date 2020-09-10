@@ -12,12 +12,16 @@ import Listrik from '_scenes/Transaction/Listrik';
 import ListrikInquiry from '_scenes/Transaction/ListrikInquiry';
 import UinProduct from '_scenes/Transaction/UinProduct';
 import UinProductDetail from '_scenes/Transaction/UinProductDetail';
+import UinProductCart from '_scenes/Transaction/UinProductCart';
 import PascaBayarInquiry from '_scenes/Transaction/PascaBayarInquiry';
 import PaketData from '_scenes/Transaction/PaketData';
 import PaketDataInquiry from '_scenes/Transaction/PaketDataInquiry';
 import Pulsa from '_scenes/Transaction/Pulsa';
 import HistoryDetail from '_scenes/Transaction/HistoryDetail';
 import ListrikPembayaran from '_scenes/Transaction/ListrikPembayaran';
+import PulsaPembayaran from '_scenes/Transaction/PulsaPembayaran';
+import MessageStack from './MessageNavigator';
+import Message from '_scenes/Message';
 import { color } from '_styles';
 
 const HomeNavigatorConfig = {
@@ -140,6 +144,16 @@ const RouteConfigs = {
             }
         }
     },
+    PulsaPembayaran:{
+        screen: PulsaPembayaran,
+        navigationOptions:{
+            title: 'Pembayaran',
+            headerTintColor: '#fff',
+            headerStyle:{
+                backgroundColor: color.primary
+            }
+        }
+    },
     UinProduct:{
         screen: UinProduct,
         navigationOptions: {
@@ -151,7 +165,13 @@ const RouteConfigs = {
         navigationOptions: {
 			header: null
 		}
-	},
+    },
+    UinProductCart:{
+        screen:UinProductCart,
+        navigationOptions:{
+            header:null
+        }
+    },
 	PascaBayarInquiry:{
         screen: PascaBayarInquiry,
         navigationOptions:{
@@ -195,7 +215,17 @@ const RouteConfigs = {
                 shadowRadius: 0
             }
         }
-	},
+    },
+    Message: {
+        screen: Message,
+        navigationOptions:{
+            title: 'Pesan',
+            headerTintColor: '#fff',
+            headerStyle:{
+            backgroundColor: color.primary
+            }
+        }    
+    },
 };
 
 const HomeNavigator = createStackNavigator(RouteConfigs, HomeNavigatorConfig);

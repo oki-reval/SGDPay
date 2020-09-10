@@ -11,8 +11,10 @@ class PulsaPembayaran extends React.Component {
 			this.state = {
 				index: 0,
 				loading: false,
-				data: props.navigation.getParam('data'),
+				phone: props.navigation.getParam('phone'),
 				type: props.navigation.getParam('type'),
+				logo:props.navigation.getParam('logo'),
+				produk: props.navigation.getParam('produk'),
 				total: '',
 				value: ''
 			}
@@ -28,20 +30,19 @@ class PulsaPembayaran extends React.Component {
 	}
 	
 	getPayment = () => {
-		const {data, type} = this.state;
-
-		Axios.post(`/pln/${type}`,{
+		const {phone, produk} = this.state;
+		Axios.post(`https://sgd.coffeemate.id/api/pulsa`,{
             type : 'payment',
-			billNumber : data.billNumber,
-			paymentCode: data.paymentCode,
-			nominalCode: data.nominalCode 
+			billNumber : phone,
+			nominalCode: produk.code 
         }).then( res => {
 			console.log(res)
-			Alert.alert(
-				'PEMBAYARAN BERHASIL !'
-			)
+			this.props.navigation.navigate('PinTransaction', {html: res.data})
+			// Alert.alert(
+			// 	'PEMBAYARAN BERHASIL !'
+			// )
         }).catch( error => {
-			console.log(error.response)
+			console.log(error)
 			Alert.alert(
 				'PEMBAYARAN GAGAL !',
 				error.response.data.message
@@ -50,16 +51,14 @@ class PulsaPembayaran extends React.Component {
 	}
 	render() {
 		const initialLayout = { width: Dimensions.get('window').width };
-		const { index, routes, loading, data } = this.state;
-		const a = data.info
-		const x = a.split('|').join('\n')
-		const y = x.split(' ').join(' ')
-		const z = y.split(/[\:\n]+/)
-		const tb = parseInt(data.admin) + parseInt(data.nominal)
+		const { phone, produk, loading, data,logo } = this.state;
+		console.log({logo})
+		console.log({produk})
+		console.log({phone})
 		return (
 			<ScrollView style={styles.wraper}>
 				<View style={styles.wraperList}>
-					<Image source={require('_assets/icons/listrik.png')} style={styles.icon} resizeMode='contain'></Image>
+					<Image source={logo} style={styles.icon} resizeMode='contain'></Image>
 					<View style={{ alignSelf: 'center' }}>
 						<Text style={styles.Text}>Listrik</Text>
 						<Text style={styles.TextBlur}>Tagihan PLN</Text>
@@ -71,12 +70,12 @@ class PulsaPembayaran extends React.Component {
 				<View style={styles.wraperListVert}>
 					<View style={{ height: 1, width: '100%', backgroundColor: color.g400, marginVertical: 10 }} />
 
-					<FlatList
+					{/* <FlatList
 						data={z}
 						keyExtractor={(item, index) => index.toString()}
 						renderItem={this.renderItem}
-					/>
-					<Text style={[styles.TextBlur, { textAlign: "center" }]}>{tb} </Text>
+					/> */}
+					{/* <Text style={[styles.TextBlur, { textAlign: "center" }]}>{tb} </Text> */}
 					<ButtonGradient loading={loading} title='Bayar' onPress={() => this.getPayment()} ></ButtonGradient>
 				</View>
 			</ScrollView>
@@ -120,6 +119,5 @@ const mapStateToProps = state => {
 		wallet: state.user.wallet
 	}
 }
-
 
 export default connect(mapStateToProps)(PulsaPembayaran);

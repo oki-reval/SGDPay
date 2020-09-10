@@ -32,6 +32,7 @@ class Login extends React.Component {
             .then(async res=>{
                 await AsyncStorage.multiSet([['token', res.data.access_token]])
                 this.props.navigation.navigate('MiddleWare')
+                console.log(res)
             }).catch(err=>{
                 Alert.alert('Error', err.message)
                 console.log(err)

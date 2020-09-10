@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { color, style } from '_styles';
 import { Input, ButtonGradient } from '_atoms';
 import Axios from 'axios';
+import { convertToRp } from '_utils';
 
 class ListrikPembayaran extends React.Component {
 	constructor(props) {
@@ -27,19 +28,24 @@ class ListrikPembayaran extends React.Component {
 		)
 	}
 	
-	getPayment = () => {
+	TransferToPooling = () => {
 		const {data, type} = this.state;
+		const tb = parseInt(data.admin) + parseInt(data.nominal);
+		const amount = tb.toString();
+		console.log({amount})
+		Axios.post(`/transfer`,{
+            // type : 'payment',
+			// billNumber : data.billNumber,
+			// paymentCode: data.paymentCode,
+			// nominalCode: data.nominalCode 
+			amount: amount,
+			destination:'0300000486',
 
-		Axios.post(`/pln/type=${type}`,{
-            type : 'payment',
-			billNumber : data.billNumber,
-			paymentCode: data.paymentCode,
-			nominalCode: data.nominalCode 
         }).then( res => {
 			console.log(res)
-			Alert.alert(
-				'PEMBAYARAN BERHASIL !'
-			)
+			// Alert.alert(
+			// 	'PEMBAYARAN BERHASIL !'
+			// )
         }).catch( error => {
 			console.log(error.response)
 			Alert.alert(
@@ -48,10 +54,12 @@ class ListrikPembayaran extends React.Component {
 			)
         })
 	}
+
 	render() {
 		const initialLayout = { width: Dimensions.get('window').width };
 		const { index, routes, loading, data } = this.state;
-		const a = data.info
+		console.log({data})
+		const a = data.info1
 		const x = a.split('|').join('\n')
 		const y = x.split(' ').join(' ')
 		const z = y.split(/[\:\n]+/)
@@ -67,17 +75,15 @@ class ListrikPembayaran extends React.Component {
 					</View>
 
 				</View>
-
 				<View style={styles.wraperListVert}>
 					<View style={{ height: 1, width: '100%', backgroundColor: color.g400, marginVertical: 10 }} />
-
 					<FlatList
 						data={z}
 						keyExtractor={(item, index) => index.toString()}
 						renderItem={this.renderItem}
 					/>
-					<Text style={[styles.TextBlur, { textAlign: "center" }]}>{tb} </Text>
-					<ButtonGradient loading={loading} title='Bayar' onPress={() => this.getPayment()} ></ButtonGradient>
+					<Text style={[styles.TextBlur, { textAlign: 'left' }]}> Total Bayar {convertToRp(tb)} </Text>
+					<ButtonGradient loading={loading} title='Bayar' onPress={() => this.TransferToPooling()} ></ButtonGradient>
 				</View>
 			</ScrollView>
 		);

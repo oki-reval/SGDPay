@@ -34,6 +34,9 @@ export const color = {
     g800: '#424242',
     g900: '#212121',
     gr300: '#81C784',
+    gr600:'#228B22',
+
+
 
     success: '#65DA8D',
     failed: '#EB5757',

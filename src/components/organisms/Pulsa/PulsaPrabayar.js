@@ -5,6 +5,7 @@ import { Button, Divider, Input } from '_atoms';
 import { color, style } from '_styles';
 import { Loading, PulsaDenom } from '_molecules'
 import axios from 'axios';
+import { withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class PulsaPrabayar extends React.Component {
@@ -22,7 +23,7 @@ class PulsaPrabayar extends React.Component {
                 logo: '',
                 status: false,
                 packet: [],
-                produk: ''
+                produk: '',
 
             }
     }
@@ -125,11 +126,11 @@ class PulsaPrabayar extends React.Component {
                     </View>
                     <Divider style={{ marginBottom: 10 }} />
                     {
-                        status && <PulsaDenom provider={provider} produk={produk} data={denom} onPress={(produk) => this.setState({ produk })} />
+                        status && <PulsaDenom provider={provider} produk={produk} onPress={(produk) => this.setState({ produk })} />
                     }
                 </View>
                 <View style={styles.footer}>
-                    <Button title='Selanjutnya' disabled={phone.length < 10 || !produk} onPress={() => this.props.navigation.navigate('PPOBPayment', { phone, produk })} />
+                    <Button title='Selanjutnya' disabled={phone.length < 10 || !produk} onPress={() => this.props.navigation.navigate('PulsaPembayaran', { phone, produk,logo })} />
                 </View>
                 <Loading isLoading={loading} />
             </View >
@@ -149,40 +150,4 @@ const styles = StyleSheet.create({
         borderColor: color.g300
     },
 })
-
-const denom = [
-    {
-        name: '5000',
-        nominal: '6000',
-    },
-    {
-        name: '10000',
-        nominal: '11000',
-    },
-    {
-        name: '15000',
-        nominal: '16000',
-    },
-    {
-        name: '25000',
-        nominal: '26000',
-    },
-    {
-        name: '50000',
-        nominal: '51000',
-    },
-    {
-        name: '100000',
-        nominal: '100000',
-    },
-]
-
-
-const mapStateToProps = state => {
-    return {
-        user: state.user.data,
-        wallet: state.user.wallet
-    }
-}
-
-export default connect(mapStateToProps)(PulsaPrabayar);
+export default withNavigation (PulsaPrabayar);

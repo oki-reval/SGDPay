@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated, Alert, RefreshControl } from 'react-native';
+import { Text, Image, StyleSheet, StatusBar, ScrollView, Animated, Alert, RefreshControl, View, FlatList, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { HeaderTransparent, Input, Divider } from '_atoms';
-import { Slider, CardInfo, Menu, CampusNews, StudentNews, FullMenu, Loading } from '_molecules';
+import { HeaderTransparent, Input, Divider, Button, HeaderCart,Icons } from '_atoms';
+import { Slider, CardInfo, Menu, CampusNews, StudentNews, FullMenu, Loading, ProductUin } from '_molecules';
 import { Header } from 'react-navigation-stack'
-import { color } from '_styles';
+import { color, style } from '_styles';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { getUser } from '_states/actions/user';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,8 +16,11 @@ class Home extends React.Component {
             this.state = {
                 activeImage: 0,
                 scrollAnimatedValue: new Animated.Value(0),
+                animatedValue: new Animated.Value(0),
                 yAxis: 0,
                 fullMenu: false,
+                product: " ",
+
             }
     }
 
@@ -28,6 +33,7 @@ class Home extends React.Component {
     }
 
     handleScroll = (yAxis) => {
+        console.log(yAxis)
         this.changeStatusBar(yAxis)
         this.setState({ yAxis })
     }
@@ -40,9 +46,13 @@ class Home extends React.Component {
         } else if (item.route == 'alert') {
             Alert.alert('', item.params)
         } else {
-            this.props.navigation.navigate(item.route, {data: item.params});
+            this.props.navigation.navigate(item.route, { data: item.params });
         }
 
+    }
+
+    toAllProduct = () => {
+        this.props.navigation.navigate('UinProduct')
     }
 
     getUsers = () => {
@@ -62,21 +72,26 @@ class Home extends React.Component {
             extrapolateRight: 'clamp',
         })
 
+        const { product } = this.state;
+
         return (
             <>
                 <StatusBar animated translucent backgroundColor='transparent' />
 
-                <HeaderTransparent animated={animated} elevation={elevation}>
+                <HeaderCart animated={this.state.animatedValue}>
                     <Input placeholder='Cari...' icon='search' containerStyle={{ flex: 1 }} />
-                    <Icon name='bell' color={this.state.yAxis < 70 ? '#fff' : color.g500} size={20} style={{ paddingHorizontal: 10 }} />
-                </HeaderTransparent>
+                    <Icons src={require('_assets/icons/chat.png')} color={this.state.yAxis < 50 ? '#fff' : color.g700} size={25} onPress={() => this.props.navigation.navigate('Message')} />
+                </HeaderCart>
 
                 <Animated.ScrollView
                     style={styles.scrollView}
                     scrollEventThrottle={8}
                     onScroll={Animated.event(
-                        [{ nativeEvent: { contentOffset: { y: this.state.scrollAnimatedValue } } }],
-                        { listener: event => this.handleScroll(event.nativeEvent.contentOffset.y) }
+                        [{ nativeEvent: { contentOffset: { y: this.state.animatedValue} } }],
+                        {
+                            listener: event => this.handleScroll(event.nativeEvent.contentOffset.y),
+                            useNativeDriver: false
+                        },
                     )}
                     refreshControl={
                         <RefreshControl
@@ -91,14 +106,27 @@ class Home extends React.Component {
                     <CardInfo onPress={this.handlePress} />
                     <Menu onPress={this.handlePress} />
                     <Divider />
-                    <CampusNews data={news} />
-                    <StudentNews data={news} />
+                    <View style={styles.ViewProduct}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Text style={styles.headline}> Produk Terlaris</Text>
+                            <TouchableOpacity onPress={this.toAllProduct}>
+                                <Text style={{ margin: 10, color: color.gr600, }}> Lihat Semua </Text>
+                            </TouchableOpacity>
+                        </View>
+                        <ProductUin product={product} horizontal={true} numberOfColum={1}></ProductUin>
+                    </View>
+                    <Divider />
                     <FullMenu isVisible={this.state.fullMenu} toggle={() => this.setState({ fullMenu: false })} />
+                    <View style={{height:80}}>
+
+                    </View>
                 </Animated.ScrollView>
             </>
         )
     }
 }
+
+const { width, height } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -110,6 +138,21 @@ const styles = StyleSheet.create({
     scrollView: {
         marginTop: -(Header.HEIGHT + 15),
         // backgroundColor: color.g100
+    },
+    ViewProductItem: {
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        margin: 8,
+        borderRadius: 5
+
+    },
+
+    headline: {
+        fontSize: 16,
+        margin: 10,
+        marginBottom: 5,
+        fontWeight: 'bold',
+        color: color.g700,
     }
 })
 

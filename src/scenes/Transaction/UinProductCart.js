@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { HeaderTransparent, Input, ButtonGradient, Button } from '_atoms';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class UinProductDetail extends React.Component {
+class UinProductCart extends React.Component {
 
     constructor(props) {
         super(props),
@@ -16,9 +16,20 @@ class UinProductDetail extends React.Component {
                     { key: 'first', title: 'Transfer' },
                     { key: 'second', title: 'Riwayat' }
                 ],
-                name: props.navigation.getParam('name'),
-                price: props.navigation.getParam('price'),
-                image: props.navigation.getParam('image')
+                product: [
+                    {
+                        name: 'SGD Water Gelas',
+                        price: ' Rp 6000',
+                    },
+                    {
+                        name: 'SGD Water Botol ',
+                        price: 'Rp 11000',
+                    },
+                    {
+                        name: 'sgd water sedang',
+                        price: 'Rp 16000',
+                    },
+                ]
             }
     }
 
@@ -26,13 +37,8 @@ class UinProductDetail extends React.Component {
         this.props.navigation.goBack()
     }
 
-    goCart = () => {
-        this.props.navigation.navigate('UinProductCart')
-    }
-
     render() {
         const initialLayout = { width: Dimensions.get('window').width };
-        const {image, price, name} = this.state;
         return (
             <View style={{ flex: 1 }}>
                 <HeaderTransparent >
@@ -47,11 +53,9 @@ class UinProductDetail extends React.Component {
                 <ScrollView >
 
                     <View style={[styles.ViewProductItem, { margin: 0 }]}>
-                        <Image source={image} style={{ height: 358, width: 360 }}></Image>
-                        <Text> {name} </Text>
-                        <Text> {price} </Text>
+                        <Text> Harga </Text>
+                        <Text> Nama PRoduk</Text>
                         <Text>Rating </Text>
-                        <Text>Stock </Text>
                     </View>
                     <View style={styles.ViewProduct}>
 
@@ -79,7 +83,7 @@ class UinProductDetail extends React.Component {
 
                     
                     <View style={styles.ViewProductItem}>
-                        <ButtonGradient title='Checkotu' onPress={this.goCart}></ButtonGradient>
+                        <ButtonGradient title='Checkotu'></ButtonGradient>
                     </View>
                 </ScrollView>
             </View>
@@ -124,4 +128,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(UinProductDetail);
+export default connect(mapStateToProps)(UinProductCart);

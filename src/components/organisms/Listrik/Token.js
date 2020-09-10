@@ -32,7 +32,7 @@ const Token = (props) => {
                     <Input value={npl} onChangeText={(v) => setNpl(v)} keyboardType='number-pad' label='Nomor Pelanggan Listrik' placeholder='010XXXXXXX' />
                 </View>
                 <Divider style={{ marginBottom: 10 }} />
-                <TokenDenom paket={paket} onPress={(paket) => setPaket( paket )} />
+                <TokenDenom paket={paket}  onPress={(paket) => setPaket( paket )} />
             </View>
             <ButtonGradient style={{ marginVertical: 20, marginHorizontal: 10 }} disabled={!npl} loading={loading} title='Selanjutnya' onPress={() => getInquiry()} />
         </View>

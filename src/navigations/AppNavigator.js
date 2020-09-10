@@ -6,12 +6,16 @@ import ProfileStack from './ProfileNavigator';
 import TransactionStack from './TransactioNavigator';
 import MessageStack from './MessageNavigator';
 import MoreStack from './MoreNavigator';
+import ProductStack from './ProductListNavigator';
+import CartStack from './CartNavigator';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from '_styles';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
-import conf from '../assets/fonts/selection.json'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import conf from '../assets/fonts/selection.json';
+// import Icons from '_atoms/Icons';
 
-const Icon = createIconSetFromIcoMoon(conf);
+const Icons = createIconSetFromIcoMoon(conf);
 
 const TabNavigatorConfig =
 {
@@ -21,7 +25,7 @@ const TabNavigatorConfig =
             let iconName;
             if (routeName == 'Home') {
                 iconName = `home`;
-            } else if (routeName == 'Berita') {
+            } else if (routeName == 'Belanja') {
                 iconName = `th-large`;
             } else if (routeName == 'Scan') {
                 iconName = `qrcode`;
@@ -29,6 +33,8 @@ const TabNavigatorConfig =
                 iconName = `message`;
             } else if (routeName == 'Profile') {
                 iconName = `profile`;
+            } else if (routeName == 'Keranjang'){
+                iconName = `cart-plus`
             }
             if (routeName == 'Scan') {
                 return (
@@ -37,10 +43,14 @@ const TabNavigatorConfig =
                     </View>
                 )
             }
-            if (routeName == 'Berita') {
+            if (routeName == 'Belanja') {
                 return <FontAwesome name={iconName} color={tintColor} size={20} />
             }
-            return <Icon name={iconName} size={20} color={tintColor} />
+            if (routeName == 'Keranjang'){
+                // return <Icons src={require('_assets/icons/ic_tabbar_cart.png')} color={tintColor} size={25}  />
+                return <Icon name='cart-plus' color={tintColor} size={30} style={{ paddingHorizontal: 10 }} />
+            }
+            return <Icons name={iconName} size={20} color={tintColor} />
         },
         swipeEnabled: true,
         animationEnabled: true,
@@ -55,8 +65,8 @@ const RouteConfigs = {
     Home: {
         screen: HomeStack,
     },
-    Berita: {
-        screen: MoreStack,
+    Belanja: {
+        screen: ProductStack,
     },
     Scan: {
         screen: TransactionStack,
@@ -64,8 +74,8 @@ const RouteConfigs = {
             tabBarLabel: ' '
         }
     },
-    Pesan: {
-        screen: MessageStack,
+    Keranjang: {
+        screen: CartStack,
     },
     Profile: {
         screen: ProfileStack,

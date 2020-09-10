@@ -6,6 +6,7 @@ import { CampusNews, StudentNews } from './CampusNews';
 import HeaderProfile from './HeaderProfile';
 import PulsaDenom from './PulsaDenom';
 import TokenDenom from './TokenDenom';
+import ProductUin from './ProductUin';
 export {
     Menu,
     Slider,
@@ -15,6 +16,7 @@ export {
     CampusNews,
     PulsaDenom,
     TokenDenom,
+    ProductUin,
     StudentNews,
     HeaderProfile
 }

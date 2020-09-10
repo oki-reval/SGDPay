@@ -20,10 +20,6 @@ const PulsaDenom= (props) => {
         )
     }
 
-    const getProvider = () =>{
-        setProvider(props.provider)
-    }
-
     const getDenom = () => {
         Axios.get(`/denom?type=${props.provider}`)
         .then ( res =>{
@@ -38,6 +34,7 @@ const PulsaDenom= (props) => {
 
         )
     }
+    
     return (
         <View style={{ padding: 10 }}>
             <FlatList

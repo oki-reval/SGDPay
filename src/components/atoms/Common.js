@@ -17,6 +17,13 @@ export const Card = (props) => {
     )
 }
 
+export const DividerSmall = () =>{
+    const widthScreen = Dimensions.get('screen').width
+    return (
+        <View style={{ height: 2, width: widthScreen, backgroundColor: color.g200 }} />
+    )
+}
+
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',

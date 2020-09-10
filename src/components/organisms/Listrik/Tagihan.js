@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 import Axios from 'axios';
 
 const Tagihan = (props) => {
-    const [value, setValue] = useState(" ");
+    const [value, setValue] = useState("122100575010");
     const [loading, setLoading] = useState(false);
 
     const getInquiry = () =>{
@@ -14,10 +14,9 @@ const Tagihan = (props) => {
             type : 'inquiry',
             billNumber : value, 
         }).finally( () => setLoading(false)
-
         ).then( res => {
-            console.log(res)
-            props.navigation.navigate('ListrikPembayaran',{data:res.data, type:'postpaid'})
+            console.log({res})
+            props.navigation.navigate('ListrikPembayaran',{data:res.data.data, type:'postpaid'})
         }).catch( error => {
             console.log(error.response)
             Alert.alert(
